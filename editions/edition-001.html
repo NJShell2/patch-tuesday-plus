@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #1: Week of September 15-22, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #1: the week's biggest cybersecurity news for IT admins. Zero-days to patch, major breaches, ransomware, and outages, September 15-22, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #1: Week of September 15-22, 2026</h1>
+    <p class="meta">Published Wednesday, September 23, 2026. Curated from 22 tracked alerts.</p>
+
+    <p class="lede">This was a patching week, not a watching week. Three actively exploited flaws hit core infrastructure: identity services, email gateways, and firewall management servers. If you run any of those, the top of this page is your to-do list. The rest is what got stolen, who got hit, and what went down while you were patching.</p>
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#zero-days">Zero-days and KEV additions</a></li>
+      <li><a href="#breaches">Breaches</a></li>
+      <li><a href="#ransomware">Ransomware</a></li>
+      <li><a href="#outages">Outages</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. Cisco Identity Services Engine, CVE-2026-76460 (CVSS 10)</h3>
+      <p>An authentication bypass in Cisco ISE, actively exploited in the wild. CISA put it in the Known Exploited Vulnerabilities catalog with a 3-day federal patch deadline. ISE is the box that decides who gets on your network, so an unauthenticated bypass there is about as bad as it gets.</p>
+      <div class="action"><strong>Action:</strong> Patch ISE immediately, then check logs for signs someone walked in before you did. If you run Acronis Backup too, its CVE-2026-87886 landed in the same KEV batch.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>2. Cisco Secure Email Gateway, CVE-2026-76461 (root RCE)</h3>
+      <p>Actively exploited zero-day: a crafted email gives an unauthenticated attacker remote code execution with root privileges on the gateway. Cisco's own warning is blunt: patching alone may not be enough. Treat any internet-exposed, unpatched appliance as already compromised.</p>
+      <div class="action"><strong>Action:</strong> Patch now, then hunt for compromise on every exposed gateway. Rebuild anything you cannot clear. CISA's federal deadline for this one was September 17.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>3. Check Point Security Management Server, CVE-2026-93616</h3>
+      <p>A path traversal flaw that lets an unauthenticated attacker upload and execute arbitrary scripts on the management server, plus the multi-domain, log server, and SmartEvent components. Confirmed actively exploited. Hotfix R82.20 is available. A second flaw, auth bypass CVE-2026-16232, was patched September 18 but is not yet confirmed exploited.</p>
+      <div class="action"><strong>Action:</strong> Apply hotfix R82.20 to all affected management components. The management server is the crown jewel: whoever owns it owns your policy layer.</div>
+    </div>
+
+    <h2 id="zero-days">Zero-days and KEV additions</h2>
+
+    <div class="card">
+      <span class="badge critical">CVSS 10</span>
+      <h3>GitLab, CVE-2026-85706</h3>
+      <p>Unauthenticated path traversal leading to arbitrary file reads. Exploitation has escalated from probes to full exfiltration of config files, secrets, and system SSH configs. In CISA KEV since September 11.</p>
+      <div class="action"><strong>Action:</strong> Upgrade to 19.1.8, 19.2.6, or 19.3.2. If your GitLab is internet-facing and was unpatched, rotate secrets and SSH configs; assume they were read.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">CVSS 9.8</span>
+      <h3>VMware vCenter Server, CVE-2026-59310</h3>
+      <p>Unauthenticated remote code execution in the Syslog component. Ransomware crews are actively exploiting it: 361 victim IPs across 47 countries, with a Babuk-derived payload seen dropped onto ESXi hosts. CISA confirmed the ransomware angle; Broadcom's patch has been out since July 29.</p>
+      <div class="action"><strong>Action:</strong> Patch vCenter to the fixed builds (9.1.0.0300, 9.0.2.0100, 8.0 U3k/U2f). If it was exposed, check ESXi hosts for unfamiliar payloads before you trust the cluster again.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">CVSS 9.9</span>
+      <h3>ConnectWise ScreenConnect, CVE-2026-84869</h3>
+      <p>Active in-the-wild exploitation reported by Huntress: VBScript payloads delivered to connected sessions. ScreenConnect is a remote access tool, so exploitation here means direct access to endpoints.</p>
+      <div class="action"><strong>Action:</strong> Update to 26.6.5 and review connected-session logs for script activity you did not authorize.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>JFrog Artifactory, CVE-2026-42016 and CVE-2026-42018</h3>
+      <p>Two flaws chainable to full admin control of the artifact repository. Attacks observed between August 15 and September 8. Your build artifacts are a supply-chain target; admin control there poisons everything downstream.</p>
+      <div class="action"><strong>Action:</strong> Patch Artifactory and audit admin accounts and repository contents for tampering.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">KEV, deadline Sept 24</span>
+      <h3>Zyxel GS1900 switches, CVE-2026-7273</h3>
+      <p>Stack-based buffer overflow in the CGI handler. An unprivileged actor on the LAN can run OS commands with crafted HTTP requests. CISA added it to KEV on September 21 after GreyNoise reported first exploitation on September 17: roughly 996 switches compromised across 48 countries, with data exfiltrated.</p>
+      <div class="action"><strong>Action:</strong> Apply the 2.90 x.2 C0 firmware (released June 16). Federal deadline is Thursday, September 24. Small-business switches are easy to forget; inventory yours.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">KEV</span>
+      <h3>Linux kernel trio, CVE-2025-39682, CVE-2026-53266, CVE-2025-39964</h3>
+      <p>CISA added three actively exploited kernel flaws on September 18: kTLS (CVSS 9.8, public exploits), ebtables/Netfilter (CVSS 8.8), and AF_ALG (CVSS 7.8). The 3-day federal deadline was September 21.</p>
+      <div class="action"><strong>Action:</strong> Patch kernels on exposed Linux hosts, especially anything running kTLS-terminating services.</div>
+    </div>
+
+    <h2 id="breaches">Breaches</h2>
+
+    <div class="card">
+      <h3>CenterPoint Energy: 7.49 million customer records claimed</h3>
+      <p>Confirmed via SEC 8-K filing. Roughly 7.49 million customer records claimed on a dark-web forum: names, addresses, account numbers, partial SSNs. Energy services were unaffected.</p>
+      <div class="action"><strong>Action:</strong> If your org is a CenterPoint customer, warn staff about utility-themed phishing and consider credit monitoring for affected accounts.</div>
+    </div>
+
+    <div class="card">
+      <h3>Gyazo: 23.6 million user records</h3>
+      <p>Disclosed September 18. An attacker exploited an image-upload-server vulnerability and ran malicious commands, taking names, emails, password hashes, device and user IDs, X integration tokens, Google SSO emails, and billing info. Payment card data was not affected. Separately, about 490 million image metadata records (pre-January 2019) were exposed, including EXIF location data and OCR text.</p>
+      <div class="action"><strong>Action:</strong> If anyone at your org uses Gyazo, rotate passwords and revoke X and Google integrations. The EXIF location exposure makes this one worth a company-wide heads-up.</div>
+    </div>
+
+    <div class="card">
+      <h3>Florida FLHSMV DAVID database</h3>
+      <p>Florida confirmed a breach of the DAVID driver and vehicle database. ShinyHunters claims more than 200,000 driver records stolen; the state has not confirmed the count. Entry came through compromised Plant City Police Department credentials that were stored on a personal device.</p>
+      <div class="action"><strong>Action:</strong> Nothing to patch. Warn Florida staff and residents about DMV-themed phishing; a credit freeze is the cheap insurance here.</div>
+    </div>
+
+    <div class="card">
+      <h3>LimeLeads: 17.8 million accounts in Have I Been Pwned</h3>
+      <p>Added to HIBP on September 22: 17,838,396 breached accounts from an exposed Elasticsearch server, dating to August 2019. Corporate contact data: emails, phone numbers, employers, job titles, locations. The firm is defunct, so nobody is patching anything; the data just lives on.</p>
+      <div class="action"><strong>Action:</strong> Check your domain in HIBP. This dataset is tailor-made for spear phishing, so it is a good excuse to run a phishing refresher.</div>
+    </div>
+
+    <div class="card">
+      <h3>MIP Holdings / Hollard: ransom paid, data published anyway</h3>
+      <p>The "Gentlemen" group reneged after MIP paid a substantial ransom and published policyholder data anyway: names, children's names, ID numbers, emails. They are now extorting roughly 45 South African insurers directly. Hollard confirmed the incident is isolated to funeral policyholders.</p>
+      <div class="action"><strong>Action:</strong> The lesson for your incident plan: paying does not buy deletion. Make sure your leadership knows that before they are the ones deciding.</div>
+    </div>
+
+    <div class="card">
+      <h3>Revolut extortion attempt</h3>
+      <p>A group calling itself "iamnotavillain" launched a public extortion site demanding 6,000 Monero (about $3 million) for data on roughly 680 Revolut customers: passports, driver's licenses, ID selfies, contact and financial details. Italian prosecutors are investigating; Revolut says its systems and customer funds are unaffected.</p>
+      <div class="action"><strong>Action:</strong> Small victim count, but watch the pattern: public extortion sites are becoming the opening move, not the last resort.</div>
+    </div>
+
+    <h2 id="ransomware">Ransomware</h2>
+
+    <div class="card">
+      <h3>Namibia's Ministry of Defence, hit by RansomHouse</h3>
+      <p>Confirmed by Namibia's CSIRT on September 19. RansomHouse listed the Ministry of Defence and Veterans Affairs on its leak site on September 16 in a double-extortion attack. A defense ministry is a high-value target for intelligence, not just money.</p>
+    </div>
+
+    <div class="card">
+      <h3>Fresenius Medical Care, claimed by ShinyHunters</h3>
+      <p>Leak-site listing disclosed September 22. The company has not confirmed. Treat as unconfirmed but worth tracking: healthcare is critical infrastructure and Fresenius is enormous.</p>
+    </div>
+
+    <div class="card">
+      <h3>Accela, claimed by EndZone</h3>
+      <p>EndZone claims 50 GB exfiltrated from Accela, a government-focused SaaS vendor, including 2 million lines of PII and 6 million citizen-portal requests. Unconfirmed by Accela. If it holds up, this is a supply-chain problem for every local government on the platform.</p>
+    </div>
+
+    <h2 id="outages">Outages</h2>
+
+    <div class="card">
+      <h3>Salesforce: global login service stall</h3>
+      <p>An internal login service stalled on September 16, hitting hundreds of instances worldwide. Fix rolled out around 11am BST; recovery continued through the day.</p>
+    </div>
+
+    <div class="card">
+      <h3>Microsoft 365 / Azure: SSO failures</h3>
+      <p>Users in the US and UK were locked out of M365 and Azure portals on September 16 amid 5xx sign-in failures. Microsoft investigated through the afternoon.</p>
+    </div>
+
+    <div class="card">
+      <h3>Google Drive: page-loading disruptions</h3>
+      <p>Widespread page-loading problems on the morning of September 16, with a Downdetector spike before 10am ET. Details stayed thin.</p>
+      <div class="action"><strong>Action:</strong> Three major SaaS platforms stumbled in one day. If your helpdesk tickets spike during a vendor outage, check the vendor status page first and save yourself the local troubleshooting.</div>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>Zyxel FCEB deadline, Thursday September 24.</strong> If those GS1900 switches are still unpatched after this, assume compromise, not just risk.</li>
+        <li><strong>Check Point CVE-2026-16232.</strong> Patched September 18, not yet confirmed exploited. If exploitation is confirmed, it joins the top-3 list immediately.</li>
+        <li><strong>October Patch Tuesday lands October 13.</strong> Monthly patch planning starts now; clear the backlog from this week first.</li>
+        <li><strong>Cisco pair fallout.</strong> Expect victim disclosures and IOCs from the ISE and Email Gateway zero-days. If you patched late, keep hunting.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #1, week of September 15-22, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+</body>
+</html>
