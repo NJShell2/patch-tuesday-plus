@@ -196,6 +196,19 @@ h2 {
 
 .signup button:hover { background: var(--accent-dark); }
 
+.signup a.button {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.signup a.button:hover { background: var(--accent-dark); }
+
 .signup .fine {
   font-size: 0.82rem;
   color: #8fa0b5;
