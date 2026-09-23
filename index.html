@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patch Tuesday Plus - Weekly cybersecurity news for IT admins</title>
+<meta name="description" content="Patch Tuesday Plus: a weekly rollup of the biggest cybersecurity news. Zero-days to patch, major breaches, ransomware, and outages. Plain-spoken, no hype.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand">Patch Tuesday <span class="plus">Plus</span></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="#archive">Archive</a>
+      <a href="#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>The week in security, every Tuesday</h1>
+    <p class="lede">Zero-days worth patching, breaches worth knowing about, ransomware worth watching, and outages worth blaming before you troubleshoot. Curated for IT admins and security-minded pros.</p>
+
+    <h2>Latest edition</h2>
+    <div class="card">
+      <span class="badge info">New</span>
+      <h3><a href="editions/edition-001.html">Edition #1: Week of September 15-22, 2026</a></h3>
+      <p>This was a patching week, not a watching week. Three actively exploited flaws hit core infrastructure: Cisco ISE (CVSS 10 auth bypass), Cisco Secure Email Gateway (root RCE via crafted email), and Check Point Management Server (unauthenticated script execution). Plus the GitLab, vCenter, and ScreenConnect zero-days, six major breach disclosures, and a triple SaaS outage day.</p>
+      <p><a href="editions/edition-001.html">Read Edition #1 &rarr;</a></p>
+    </div>
+
+    <h2 id="archive">Archive</h2>
+    <ul class="archive">
+      <li>
+        <span class="ed-num"><a href="editions/edition-001.html">Edition #1</a></span>
+        <span class="ed-date"> &middot; Week of September 15-22, 2026</span>
+        <br>Cisco ISE, Cisco Email Gateway, and Check Point zero-days lead; Gyazo, CenterPoint, and LimeLeads breaches; triple outage day.
+      </li>
+    </ul>
+
+    <div class="signup" id="signup">
+      <h2>Get the Daily Security Brief</h2>
+      <p>This site is the weekly rollup. For the day-to-day version, sign up for the Daily Security Brief: one short email each morning with what broke overnight and what needs your attention today.</p>
+      <!-- EMAIL CAPTURE:
+           New subscribers land on the 'Patch Notes' Beehiiv list:
+           https://patchnotesdaily.beehiiv.com
+           (tagline: 'The 5-minute daily cybersecurity brief for people with a network to defend').
+           The Daily Security Brief writer owns the daily email and the Beehiiv publication.
+           This form currently posts to a placeholder endpoint and stores nothing.
+           The writer will supply the real Beehiiv subscribe embed or form action;
+           update the form below (or swap in the Beehiiv embed) and remove this comment.
+           Funnel: this weekly site drives capture to the Beehiiv list, and the welcome
+           sequence's Day 4 email sets expectations for the Tuesday weekly edition. -->
+      <form action="https://example.com/api/subscribe-placeholder" method="post">
+        <input type="email" name="email" placeholder="you@company.com" required aria-label="Email address">
+        <button type="submit">Sign me up</button>
+      </form>
+      <p class="fine">Weekly rollup here, daily brief in your inbox. The brief covers what broke overnight; the Tuesday edition ranks the week's biggest items with context and actions. No spam, unsubscribe anytime.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Published every Tuesday. Curated for IT admins and security-minded pros.</p>
+  </div>
+</footer>
+
+</body>
+</html>
