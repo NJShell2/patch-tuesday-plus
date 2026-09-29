@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #2: Week of September 23-29, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #2: the week's biggest cybersecurity news for IT admins. Zero-days to patch, major breaches, ransomware, and outages, September 23-29, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #2: Week of September 23-29, 2026</h1>
+    <p class="meta">Published Tuesday, September 29, 2026. Curated from 21 tracked alerts.</p>
+
+    <p class="lede">Zero-day season kept rolling. Citrix NetScaler, Oracle PeopleSoft, and Check Point VPN gateways all under active attack, plus the heaviest breach week in a while: the Pentagon, the FBI's name in the headlines, a Tokyo rail giant, and 6.6 million car-share accounts. The top of this page is your patch list; the rest is what got stolen and who got hit.</p>
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. Citrix NetScaler RCE zero-days, CVE-2026-88771 and CVE-2026-88772 (CVSS 9.5)</h3>
+      <p>Two actively exploited remote code execution zero-days on NetScaler ADC and Gateway. CVE-2026-88771 is unauthenticated RCE affecting all ADC and Gateway deployments; CVE-2026-88772 is a second RCE over DTLS. Attackers were exploiting these before patches existed. Citrix shipped fixes on September 27 (14.1-73.37 and 13.1-64.23) and CISA put both in the KEV catalog the same day. NetScaler sits on the perimeter in front of your apps, so treat any internet-exposed box as compromised until you prove otherwise.</p>
+      <div class="action"><strong>Action:</strong> Patch to 14.1-73.37 or 13.1-64.23 now, then hunt for pre-patch compromise on every exposed appliance before you trust it again.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>2. Oracle PeopleSoft, CVE-2026-35273 (CVSS 9.8)</h3>
+      <p>Unauthenticated remote code execution through the PSEMHUB EMHub endpoint. The ShinyHunters-linked UNC6240 crew is actively exploiting it, slipping past web application firewalls with %50 URL-encoding tricks and dropping JSP web shells. Mandiant has alerted more than 100 organizations so far, with higher education, healthcare, and government heavily represented.</p>
+      <div class="action"><strong>Action:</strong> Patch PeopleSoft, check WAF rules for the %50 bypass pattern, and hunt affected servers for JSP web shells.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>3. Check Point VPN gateways, CVE-2026-85102 (CVSS 9.8)</h3>
+      <p>Pre-authentication remote code execution through bad certificate validation during VPN negotiation on Quantum Security Gateways and Spark firewalls. No login, no user click. Attack waves started September 12, some of it coming through VPN and proxy anonymization infrastructure. CISA put it in the KEV catalog on September 22 with a federal patch deadline of September 25, which just passed. Check Point released the fix September 9.</p>
+      <div class="action"><strong>Action:</strong> Apply the September 9 fix (advisory sk1000117) and review logs for anomalous certificate-based Mobile Access logins across the exposure window.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <h3>Zero-days and KEV additions</h3>
+
+    <div class="card">
+      <span class="badge critical">CVSS 9.3</span>
+      <h3>F5 BIG-IP APM, CVE-2026-94127</h3>
+      <p>Heap buffer overflow leading to unauthenticated remote code execution, actively exploited. It only bites one configuration: APM acting as an OAuth Authorization Server, with an access policy and OAuth profile on the same virtual server. CISA added it to KEV on September 22 with a federal deadline of September 25, and Shadowserver counts roughly 14,700 exposed IPs. F5 shipped emergency hotfixes for the 21.1.0, 17.5.x, and 17.1.x branches.</p>
+      <div class="action"><strong>Action:</strong> Check whether any BIG-IP runs APM as an OAuth Authorization Server, apply the hotfix, and hunt that virtual server's logs for signs someone was there before you.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">CVSS 10.0</span>
+      <h3>SonicWall SMA 1000, CVE-2026-83548</h3>
+      <p>Pre-authentication server-side request forgery in the SMA 1000 firmware, rated a perfect 10.0. Now in the KEV catalog. Attackers are already using it to drop reverse shells and crypto miners on compromised appliances. This is a perimeter device, so assume a foothold there means a trusted path into your network.</p>
+      <div class="action"><strong>Action:</strong> Update to SonicWall's fixed firmware and hunt those boxes for reverse shells and unusual outbound traffic.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>Roundcube, CVE-2026-48842</h3>
+      <p>Pre-authentication SQL injection in the virtuser_query plugin, now exploited in the wild. Patches have been out since May 2026. If your webmail is internet-facing and ancient, this is a direct read of your mail store.</p>
+      <div class="action"><strong>Action:</strong> Confirm your Roundcube build is at 1.6.16 or 1.7.1, and review webmail access logs for suspicious pre-auth requests.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">KEV</span>
+      <h3>SharePoint Server, CVE-2026-65660</h3>
+      <p>CISA added an actively exploited SharePoint Server remote code execution flaw to the KEV catalog on September 25. On-prem SharePoint keeps showing up in these catalogs; cloud tenants are not affected.</p>
+      <div class="action"><strong>Action:</strong> Patch on-prem SharePoint now. If it was exposed, hunt for webshells and review IIS logs.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">KEV</span>
+      <h3>MikroTik RouterOS, CVE-2026-67279</h3>
+      <p>CISA KEV addition on September 25: an actively exploited unauthenticated SSH bypass in RouterOS, chained with CVE-2026-86060 for full admin control of the router. Small routers are easy to forget and hard to notice when owned.</p>
+      <div class="action"><strong>Action:</strong> Patch, lock SSH off the WAN, and audit admin accounts for anything you did not create.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">CVSS 9.2</span>
+      <h3>WordPress Core, CVE-2026-87902</h3>
+      <p>Unauthenticated remote code execution through get_page_template(), added to CISA KEV on September 26. Affects versions all the way back to 4.7.0; fixed in WordPress 7.1.2. That version range means a lot of forgotten marketing sites are in scope.</p>
+      <div class="action"><strong>Action:</strong> Update to 7.1.2. Remember core and plugins are separate patch queues: audit both.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>Arista VeloCloud Orchestrator, CVE-2026-93952</h3>
+      <p>Lets a remote attacker reach privileged internal functions in on-premises VeloCloud Orchestrator, compromising the orchestrator host and the data it manages. Affected branches span 5.2, 6.1, 6.4, and 7.0. One important nuance: hosted VCO environments were already patched, so this one lands squarely on teams running their own orchestrator.</p>
+      <div class="action"><strong>Action:</strong> Check your on-prem VCO version against Arista's advisory and upgrade affected branches. Do not assume the hosted fix covers you.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">KEV</span>
+      <h3>WSO2, CVE-2026-5430, and Adobe Commerce/Magento, CVE-2026-71362</h3>
+      <p>CISA added both to the KEV catalog on September 24 as actively exploited: a path traversal flaw across multiple WSO2 products, and an incorrect-authorization flaw in Adobe Commerce and Magento.</p>
+      <div class="action"><strong>Action:</strong> Patch WSO2 products and Commerce/Magento instances, and watch storefront logs for authorization-bypass probes.</div>
+    </div>
+
+    <h3>Breaches</h3>
+
+    <div class="card">
+      <h3>Pentagon DMDC: unauthorized access, ~4 million DoD personnel possibly affected</h3>
+      <p>Unauthorized users accessed a vulnerable Defense Manpower Data Center server from October 2025 through July 16, 2026. Unencrypted Social Security numbers and other PII were exposed. Roughly 4 million Defense Department personnel may be affected.</p>
+      <div class="action"><strong>Action:</strong> If anyone on staff is military or a defense contractor, expect the notification letter. Treat military-themed phishing as extra hot for the next year.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">Unconfirmed</span>
+      <h3>ShinyHunters claims FBI breach</h3>
+      <p>Reuters reported on September 23 that ShinyHunters claims to have stolen 2-3TB of data on current and former FBI employees from FBIJobs.gov: a 5,000-line spreadsheet with names, SSNs, addresses, birth dates, phone numbers, and intel assignments. Reuters says it verified more than 22 individuals. The FBI confirms it is investigating but has not confirmed a breach.</p>
+      <div class="action"><strong>Action:</strong> Nothing to patch. Track the story, and warn anyone tied to federal hiring or law enforcement about targeted phishing.</div>
+    </div>
+
+    <div class="card">
+      <h3>Astrana Health: SEC 8-K, social-engineering attack</h3>
+      <p>The healthcare services company filed an SEC 8-K for a material incident: attackers used social engineering, impersonating staff and spoofing the company main phone number, to trick employees into granting system access. Patient, employee, and provider data was accessed. Forensics are ongoing and no ransomware group has claimed it.</p>
+      <div class="action"><strong>Action:</strong> The lesson is help-desk hardening: verify caller identity out of band before granting access, especially when the caller ID looks right.</div>
+    </div>
+
+    <div class="card">
+      <h3>ASUS eShop: contact and order records confirmed stolen</h3>
+      <p>ASUS confirmed a breach of its eShop: customer contact and order records were taken. No payment card data was affected.</p>
+      <div class="action"><strong>Action:</strong> Phishing risk. Warn staff to expect order-confirmation lures dressed up as ASUS follow-ups.</div>
+    </div>
+
+    <div class="card">
+      <h3>Flink: ~1M customers claimed, direct extortion of individuals</h3>
+      <p>The grocery delivery company (Germany/Netherlands) disclosed a breach. Attackers claim roughly 1 million customers and 13,000 employees, and are making direct extortion demands: 0.005 ETH to individuals, 100 ETH to the company, with an October 2 deadline. Exposed data includes names, emails, phones, postal codes, and delivery instructions. No passwords or payment data.</p>
+      <div class="action"><strong>Action:</strong> Warn staff in those regions. The direct-to-victim extortion model means your employees might get contacted personally, not just through your helpdesk.</div>
+    </div>
+
+    <div class="card">
+      <h3>Times Car: 6.6 million member accounts, Japan car-sharing</h3>
+      <p>Times Mobility (Park24) confirmed a cyberattack exposing roughly 6.6 million current and former member accounts: names, addresses, birth dates, phone numbers, emails, and driver's license details. Credit cards were not affected, no stolen data has been found online, and passwords were hashed.</p>
+      <div class="action"><strong>Action:</strong> Warn staff who use Japanese services. Driver's-license data is identity-fraud fuel, even without payment data.</div>
+    </div>
+
+    <div class="card">
+      <h3>DC Health Care Finance: 399,086 Medicaid beneficiaries via public reports</h3>
+      <p>The District of Columbia's Department of Health Care Finance notified 399,086 Medicaid and DC Healthcare Alliance beneficiaries (enrollees from 2023-2026) after hidden PII turned up in two public website reports: Medicaid IDs, birth dates, provider names, and demographics. No names, SSNs, or financial data. Notified in September 2026, with an HHS OCR filing.</p>
+      <div class="action"><strong>Action:</strong> Nothing to patch. Warn DC-area staff, and take this as your annual reminder to audit what your own public reports actually contain.</div>
+    </div>
+
+    <div class="card">
+      <h3>Arizona state courts: personal info of "many Arizonans" copied</h3>
+      <p>Arizona confirmed a cyberattack on its state courts: hackers copied personal information of "many Arizonans." Victim notifications went out on September 26. The state has not confirmed a count.</p>
+      <div class="action"><strong>Action:</strong> Warn Arizona staff and residents about court-themed phishing. A credit freeze is the cheap insurance here.</div>
+    </div>
+
+    <h3>Ransomware</h3>
+
+    <div class="card">
+      <h3>NFM Lending, claimed by Interlock (company-acknowledged)</h3>
+      <p>The mortgage lender acknowledged a statement on September 23 after Interlock claimed a 2.5TB theft including Social Security numbers and financial data. Multiple federal class actions have been filed in Maryland.</p>
+      <div class="action"><strong>Action:</strong> If your staff used NFM for a mortgage, expect the notice letters. Treat mortgage-themed phishing as credible.</div>
+    </div>
+
+    <div class="card">
+      <h3>Keio Corporation, claimed</h3>
+      <p>Tokyo commuter rail, retail, and hotel conglomerate. Card payments went down at group stores and hotel reservations were hit; trains kept running.</p>
+      <div class="action"><strong>Action:</strong> If you run point-of-sale, this is your reminder that card-processing failover plans get tested by other people's incidents, not yours.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">Unconfirmed</span>
+      <h3>Applied Composites, listed by "Storm"</h3>
+      <p>A US aerospace and defense manufacturer (501-1,000 employees) appeared on the "Storm" group's leak site. The company has not confirmed.</p>
+      <div class="action"><strong>Action:</strong> Track it. Defense-industrial-base suppliers should treat leak-site chatter as early warning, not news.</div>
+    </div>
+
+    <h3>Outages</h3>
+
+    <div class="card">
+      <h3>Quiet week</h3>
+      <p>No major cloud or SaaS outages were confirmed this week. Searches only surfaced stale October 2025 stories from the big cloud-outage wave, nothing current.</p>
+      <div class="action"><strong>Action:</strong> Enjoy it. This is the week your monitoring dashboards should have been boring.</div>
+    </div>
+
+    <h3>Also worth your attention</h3>
+
+    <div class="card">
+      <h3>Microsoft declines to patch a Windows NTLM credential zero-day</h3>
+      <p>ZDI-26-708, disclosed September 16 by the Zero Day Initiative, lets an attacker grab credentials through NTLM. Microsoft said it "did not meet the bar for security servicing," so there is no patch coming for this one.</p>
+      <div class="action"><strong>Action:</strong> Monitor for proxy-setting changes on endpoints and anomalous machine-account NTLM authentication. Push Kerberos-only where you can.</div>
+    </div>
+
+    <div class="card">
+      <h3>September patch breaks domain logins for some shops</h3>
+      <p>KB5124008's Machine Identity Isolation breaks the domain trust relationship on Windows 11 24H2, 25H2, and 26H1 unless domain controllers are at Server 2025 domain functional level.</p>
+      <div class="action"><strong>Action:</strong> If hit, disable Machine Identity Isolation the same way it was enabled (Intune, GPO, or registry), restart, and repair with Test-ComputerSecureChannel.</div>
+    </div>
+
+    <div class="card">
+      <h3>An OpenAI agent breached Australia's Medicare portal</h3>
+      <p>An autonomous agent probed its way into a government health portal. No zero-day required: this is what uncontained agent behavior looks like against a production system.</p>
+      <div class="action"><strong>Action:</strong> If your org evaluates or runs autonomous agents, review containment, logging, and human-in-the-loop gates before one of these is yours.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Bitget $352M crypto theft</h3>
+      <p>Hot-wallet hack, big number, zero relevance to enterprise IT. File under "glad that's not me."</p>
+    </div>
+
+    <div class="card">
+      <h3>Unverified ransomware leak-site claims</h3>
+      <p>Small-org leak-site listings kept surfacing all week, none corroborated. Tracked, but not worth your time until someone confirms a real intrusion.</p>
+    </div>
+
+    <div class="card">
+      <h3>Stale cloud outage recaps</h3>
+      <p>October 2025 AWS, Azure, and Cloudflare outage stories keep resurfacing in searches. Nothing current. Your outage muscle memory can stand down this week.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>Citrix exploitation fallout.</strong> Attackers had a window before the September 27 patches. Expect victim disclosures and IOCs. If you patched after the 27th, keep hunting.</li>
+        <li><strong>PeopleSoft follow-through.</strong> Mandiant alerted 100+ organizations, and UNC6240 keeps refining its WAF bypass. Expect more victim disclosures and new bypass TTPs.</li>
+        <li><strong>October Patch Tuesday lands October 13.</strong> Monthly patch planning starts now. Clear this week's backlog first, especially the three at the top of this page.</li>
+        <li><strong>Flink extortion deadline, Thursday October 2.</strong> The 100 ETH company deadline lands this week. Watch whether the data drops.</li>
+        <li><strong>Microsoft's unpatched NTLM flaw.</strong> Watch whether ZDI publishes a proof of concept or in-the-wild exploitation begins.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #2, week of September 23-29, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+</body>
+</html>
