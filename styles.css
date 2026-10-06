@@ -96,6 +96,22 @@ h2 {
   font-size: 0.9rem;
 }
 
+.card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 12px 0 4px;
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 18px 0;
+}
+
 /* Cards */
 
 .card {
