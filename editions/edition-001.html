@@ -29,6 +29,8 @@
 
     <p class="lede">This was a patching week, not a watching week. Three actively exploited flaws hit core infrastructure: identity services, email gateways, and firewall management servers. If you run any of those, the top of this page is your to-do list. The rest is what got stolen, who got hit, and what went down while you were patching.</p>
 
+    <img src="../assets/edition-001/hero.png" alt="Dark illustration of three core infrastructure monoliths struck by exploit lightning while a technician applies patch seals" class="hero-img">
+
     <ul class="toc">
       <li><a href="#patch-now">Patch now: the top 3</a></li>
       <li><a href="#zero-days">Zero-days and KEV additions</a></li>
@@ -43,6 +45,7 @@
     <div class="card">
       <span class="badge critical">Critical</span>
       <h3>1. Cisco Identity Services Engine, CVE-2026-76460 (CVSS 10)</h3>
+      <img src="../assets/edition-001/patch-1.png" alt="Dark illustration of a network access gate with a shattered authentication shield as intruders slip through" class="card-img">
       <p>An authentication bypass in Cisco ISE, actively exploited in the wild. CISA put it in the Known Exploited Vulnerabilities catalog with a 3-day federal patch deadline. ISE is the box that decides who gets on your network, so an unauthenticated bypass there is about as bad as it gets.</p>
       <div class="action"><strong>Action:</strong> Patch ISE immediately, then check logs for signs someone walked in before you did. If you run Acronis Backup too, its CVE-2026-87886 landed in the same KEV batch.</div>
     </div>
@@ -50,6 +53,7 @@
     <div class="card">
       <span class="badge critical">Critical</span>
       <h3>2. Cisco Secure Email Gateway, CVE-2026-76461 (root RCE)</h3>
+      <img src="../assets/edition-001/patch-2.png" alt="Dark illustration of an email envelope releasing malicious code tendrils over a mail gateway server rack" class="card-img">
       <p>Actively exploited zero-day: a crafted email gives an unauthenticated attacker remote code execution with root privileges on the gateway. Cisco's own warning is blunt: patching alone may not be enough. Treat any internet-exposed, unpatched appliance as already compromised.</p>
       <div class="action"><strong>Action:</strong> Patch now, then hunt for compromise on every exposed gateway. Rebuild anything you cannot clear. CISA's federal deadline for this one was September 17.</div>
     </div>
@@ -57,6 +61,7 @@
     <div class="card">
       <span class="badge critical">Critical</span>
       <h3>3. Check Point Security Management Server, CVE-2026-93616</h3>
+      <img src="../assets/edition-001/patch-3.png" alt="Dark illustration of a security management console with a cracked vault and a figure uploading script files" class="card-img">
       <p>A path traversal flaw that lets an unauthenticated attacker upload and execute arbitrary scripts on the management server, plus the multi-domain, log server, and SmartEvent components. Confirmed actively exploited. Hotfix R82.20 is available. A second flaw, auth bypass CVE-2026-16232, was patched September 18 but is not yet confirmed exploited.</p>
       <div class="action"><strong>Action:</strong> Apply hotfix R82.20 to all affected management components. The management server is the crown jewel: whoever owns it owns your policy layer.</div>
     </div>
