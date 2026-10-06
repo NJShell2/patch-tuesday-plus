@@ -29,6 +29,8 @@
 
     <p class="lede">Zero-day season kept rolling. Citrix NetScaler, Oracle PeopleSoft, and Check Point VPN gateways all under active attack, plus the heaviest breach week in a while: the Pentagon, the FBI's name in the headlines, a Tokyo rail giant, and 6.6 million car-share accounts. The top of this page is your patch list; the rest is what got stolen and who got hit.</p>
 
+    <img src="../assets/edition-002/hero.png" alt="Dark illustration of zero-day exploit shards raining down on perimeter network appliances" class="hero-img">
+
     <ul class="toc">
       <li><a href="#patch-now">Patch now: the top 3</a></li>
       <li><a href="#watch">Watch: the rest of the week's news</a></li>
@@ -41,6 +43,7 @@
     <div class="card">
       <span class="badge critical">Critical</span>
       <h3>1. Citrix NetScaler RCE zero-days, CVE-2026-88771 and CVE-2026-88772 (CVSS 9.5)</h3>
+      <img src="../assets/edition-002/patch-1.png" alt="Dark illustration of a perimeter application delivery appliance cracked by glowing zero-day impacts" class="card-img">
       <p>Two actively exploited remote code execution zero-days on NetScaler ADC and Gateway. CVE-2026-88771 is unauthenticated RCE affecting all ADC and Gateway deployments; CVE-2026-88772 is a second RCE over DTLS. Attackers were exploiting these before patches existed. Citrix shipped fixes on September 27 (14.1-73.37 and 13.1-64.23) and CISA put both in the KEV catalog the same day. NetScaler sits on the perimeter in front of your apps, so treat any internet-exposed box as compromised until you prove otherwise.</p>
       <div class="action"><strong>Action:</strong> Patch to 14.1-73.37 or 13.1-64.23 now, then hunt for pre-patch compromise on every exposed appliance before you trust it again.</div>
     </div>
@@ -48,6 +51,7 @@
     <div class="card">
       <span class="badge critical">Critical</span>
       <h3>2. Oracle PeopleSoft, CVE-2026-35273 (CVSS 9.8)</h3>
+      <img src="../assets/edition-002/patch-2.png" alt="Dark illustration of an enterprise HR server with a hidden web shell backdoor glowing inside" class="card-img">
       <p>Unauthenticated remote code execution through the PSEMHUB EMHub endpoint. The ShinyHunters-linked UNC6240 crew is actively exploiting it, slipping past web application firewalls with %50 URL-encoding tricks and dropping JSP web shells. Mandiant has alerted more than 100 organizations so far, with higher education, healthcare, and government heavily represented.</p>
       <div class="action"><strong>Action:</strong> Patch PeopleSoft, check WAF rules for the %50 bypass pattern, and hunt affected servers for JSP web shells.</div>
     </div>
@@ -55,6 +59,7 @@
     <div class="card">
       <span class="badge critical">Critical</span>
       <h3>3. Check Point VPN gateways, CVE-2026-85102 (CVSS 9.8)</h3>
+      <img src="../assets/edition-002/patch-3.png" alt="Dark illustration of a VPN gateway tunnel with a forged certificate floating inside" class="card-img">
       <p>Pre-authentication remote code execution through bad certificate validation during VPN negotiation on Quantum Security Gateways and Spark firewalls. No login, no user click. Attack waves started September 12, some of it coming through VPN and proxy anonymization infrastructure. CISA put it in the KEV catalog on September 22 with a federal patch deadline of September 25, which just passed. Check Point released the fix September 9.</p>
       <div class="action"><strong>Action:</strong> Apply the September 9 fix (advisory sk1000117) and review logs for anomalous certificate-based Mobile Access logins across the exposure window.</div>
     </div>
