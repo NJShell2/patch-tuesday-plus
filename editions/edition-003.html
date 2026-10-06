@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #3: Week of September 30 - October 6, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #3: the week's biggest cybersecurity news for IT admins. Frontline Education breach, AI-powered phishing, and a VPN sign-in change, September 30 - October 6, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #3: Week of September 30 - October 6, 2026</h1>
+    <p class="meta">Published Tuesday, October 6, 2026. Curated from 3 tracked alerts.</p>
+
+    <p class="lede">A quiet week for zero-days in the tracked set. The alert pipeline paused September 29 through October 5, so this edition covers what actually showed up in tracked sources: an HR-vendor breach putting thousands of employee Social Security numbers in play, the AI-powered phishing wave heating up during Cybersecurity Awareness Month, and a VPN sign-in change worth prepping your users for before October 13. Full coverage resumes this week.</p>
+
+    <img src="../assets/edition-003/hero.png" alt="Dark illustration of a night-time network operations desk with glowing server racks" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>1. Frontline Education breach, 3,709 employees' SSNs exposed</h3>
+      <img src="../assets/edition-003/patch-1.png" alt="Cracked employee record folder dissolving into pixels" class="card-img">
+      <p>Frontline Education notified customers of a breach hitting 3,709 past and present employees of one school corporation: names, Social Security numbers, addresses, and email addresses. Frontline says it has no evidence of misuse so far and is offering two years of TransUnion credit monitoring and identity-theft protection, with direct notification by email and U.S. mail. Individual exposure status was not confirmed for every affected person, so the true scope is still settling.</p>
+      <p>Who is affected: any organization running Frontline Education for HR and personnel management. If your shop uses their products, assume your current and former employees' SSNs are in the exposed set until your HR team confirms otherwise.</p>
+      <div class="action"><strong>Action:</strong> Get HR and your staff into the TransUnion monitoring enrollment now, not later. Remind your helpdesk that exposed SSNs mean an identity-fraud wave, not a patch, so the defense is credit freezes and fraud alerts, not a software update.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>2. AI-powered phishing surge during Cybersecurity Awareness Month</h3>
+      <img src="../assets/edition-003/patch-2.png" alt="Glowing circuit fishing hook descending toward an email inbox" class="card-img">
+      <p>The old phishing tells are gone. AI-generated lures no longer have the typos and awkward phrasing that user training taught people to spot; instead they scrape LinkedIn titles and department names to look personal, and deepfake voice and video are now showing up in wire-transfer and gift-card scams. The standard advice, verify urgent requests through a second channel, matters more than ever because the message itself can no longer be trusted on appearance.</p>
+      <p>Who is affected: every organization with email and a finance department, which is all of them. Anyone who moves money on a phone call or a Teams message is a target.</p>
+      <div class="action"><strong>Action:</strong> Send one awareness-month note to staff now: no money moves or credential sharing on a single channel, ever. Review your MFA registrations while you are at it, since stolen sessions are how these lures get cashed out.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">Plan</span>
+      <h3>3. Cisco Secure Client VPN sign-in moves to browser-based auth on October 13</h3>
+      <img src="../assets/edition-003/patch-3.png" alt="Laptop showing a browser authentication window with a VPN tunnel" class="card-img">
+      <p>Cisco Secure Client VPN sign-in shifts to a browser window or tab using SSO and Microsoft MFA on October 13. One important nuance: the My Sign-Ins default method no longer governs VPN authentication; Microsoft Entra ID picks the method from whatever each user has registered. Users with stale or missing MFA methods will get stuck at the new flow with no obvious fix.</p>
+      <p>Who is affected: shops running Cisco Secure Client with Entra SSO and Microsoft MFA. The wider pattern is worth noting for everyone else too: SSO vendors keep moving VPN auth into the browser, so your users will keep seeing this change somewhere.</p>
+      <div class="action"><strong>Action:</strong> Audit registered MFA methods for your heavy VPN users this week, before the 13th. Send a heads-up describing the legitimate browser flow so nobody reports it as phishing, and staff the helpdesk for a ticket bump that week.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>Tracked-alert coverage was paused September 29 - October 5</h3>
+      <p>Transparency first: the tracked-alert pipeline sat out this week during a lean-operations pause, so no new CVEs or KEV additions entered the tracked set. The pipeline is back this week, and normal volume resumes. If something blew up while coverage was dark, it will show up in next Tuesday's edition.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence. This week's thin edition reflects a coverage gap, not a quiet threat landscape.</div>
+    </div>
+
+    <div class="card">
+      <h3>Cybersecurity Awareness Month programming, including free virtual events</h3>
+      <p>October is Cybersecurity Awareness Month, and the BTAA is running virtual programming the week of October 5, including a "How to Survive the AI Apocalypse" session and a BTAA CISO panel, free to attend. It pairs well with the phishing story at the top of this page if you need a ready-made awareness-month activity.</p>
+      <div class="action"><strong>Action:</strong> Point staff at the BTAA CISO panel if you need a low-effort awareness-month checkbox with actual substance.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Stale cloud outage recaps</h3>
+      <p>The October 2025 AWS, Azure, and Cloudflare outage stories keep resurfacing in searches. Nothing current. Your dashboards can stay boring another week.</p>
+    </div>
+
+    <div class="card">
+      <h3>Crypto-heist headlines</h3>
+      <p>Big numbers, hot wallets, zero relevance to enterprise IT. File under "glad that's not me."</p>
+    </div>
+
+    <div class="card">
+      <h3>Unverified leak-site claims</h3>
+      <p>Nothing in the tracked set corroborated a real intrusion this week. Tracked, but not worth your time until someone confirms one.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>October Patch Tuesday lands October 13.</strong> Monthly patch planning starts now. Clear this week's backlog first, especially the phishing defenses and the VPN MFA audit at the top of this page.</li>
+        <li><strong>VPN browser-auth change goes live October 13.</strong> User comms and MFA audits belong in this week's window, not after the tickets arrive.</li>
+        <li><strong>Tracked alerts resume this week.</strong> Expect the normal zero-day, KEV, breach, and ransomware volume to return in next Tuesday's edition.</li>
+        <li><strong>Frontline Education follow-through.</strong> Watch for an official disclosure with final scope and any evidence of misuse showing up in fraud channels.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #3, week of September 30 - October 6, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+</body>
+</html>
