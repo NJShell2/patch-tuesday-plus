@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #4: Week of October 7 - October 13, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #4: October Patch Tuesday lands today, the Cisco VPN browser-auth change goes live, and AI-phishing defenses get an awareness-month push. October 7 - October 13, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #4: Week of October 7 - October 13, 2026</h1>
+    <p class="meta">Published Tuesday, October 13, 2026. Curated from 0 new tracked alerts.</p>
+
+    <p class="lede">A second quiet week in the tracked set. The alert pipeline is back up after the September 29 - October 5 pause, but nothing qualifying showed up October 7 - 13: no fresh zero-days, no new KEV additions, no qualifying breaches. So this edition is built from the two things that actually land today: October Patch Tuesday is today, and the Cisco VPN browser-auth change goes live today. Everything else is the ongoing awareness-month work you were probably already doing.</p>
+
+    <img src="../assets/edition-004/hero.png" alt="Dark illustration of a server room at night with a glowing alert panel and a patch being applied to a circuit node" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>1. October Patch Tuesday lands today, October 13</h3>
+      <img src="../assets/edition-004/patch-1.png" alt="Rows of workstations in a dark office with glowing update progress bars and a mid-October calendar" class="card-img">
+      <p>The October Patch Tuesday updates are out today. Every month the same advice applies: the bad guys reverse-engineer these patches within days, so the clock starts now. Prioritize internet-facing and authenticated-remote-access systems first, then workstations, then everything else. If you still have items lingering from last month's cycle, this is the week they become the real risk, not the new patches.</p>
+      <p>Who is affected: every shop running Windows, plus the usual accompanying updates from Adobe and the browser vendors. If your fleet auto-patches, your job is verification, not the install itself.</p>
+      <div class="action"><strong>Action:</strong> Start patching today. Clear last month's leftovers first, confirm your fleet's update reporting is actually reporting, and schedule the server maintenance window before the end of the week.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>2. Cisco Secure Client VPN browser-based auth goes live today</h3>
+      <img src="../assets/edition-004/patch-2.png" alt="Laptop showing a glowing browser authentication window with a VPN tunnel of light behind it" class="card-img">
+      <p>This is the one flagged in last week's edition: Cisco Secure Client VPN sign-in shifts to a browser window or tab using SSO and Microsoft MFA starting today. The key nuance stands: the My Sign-Ins default method no longer governs VPN authentication; Microsoft Entra ID picks the method from whatever each user has registered. Users with stale or missing MFA methods will hit a wall at the new flow with no obvious fix, and the browser redirect will look like a phishing attempt to anyone who was not told about it.</p>
+      <p>Who is affected: shops running Cisco Secure Client with Entra SSO and Microsoft MFA. Everyone else gets a free lesson in how SSO vendors keep moving auth into the browser.</p>
+      <div class="action"><strong>Action:</strong> If you did not audit registered MFA methods last week, do it today. Send the heads-up describing the legitimate browser flow, and staff the helpdesk for the ticket bump that lands with it.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">Plan</span>
+      <h3>3. Mid-October phishing check-in: awareness month is half over</h3>
+      <img src="../assets/edition-004/patch-3.png" alt="Glowing circuit-traces phishing hook descending toward an email inbox icon in dark space" class="card-img">
+      <p>Cybersecurity Awareness Month is halfway through, and the AI-phishing wave from last week's edition has not slowed. The lures now look personal and grammatical, and deepfake voice and video are turning up in wire-transfer and gift-card scams. If you sent one awareness note at the start of the month, the midpoint is the right time for the follow-up: no money moves and no credential sharing on a single channel, ever, and urgent requests get verified through a second channel.</p>
+      <p>Who is affected: every organization with email and a finance department, which is all of them.</p>
+      <div class="action"><strong>Action:</strong> Send the mid-month reminder this week. While you are at it, review your MFA registrations: stolen sessions are how these lures get cashed out.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>Tracked-alert coverage resumed, but the week came up empty</h3>
+      <p>Transparency first: the breach and outage watch is back after the September 29 - October 5 pause, but nothing met the bar October 7 - 13. No qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages. A quiet week in the tracked set is a quiet week, not necessarily a quiet world, so this edition reflects coverage, not a guarantee.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence. The November Patch Tuesday (November 10) is four weeks out; use the calm to clear backlog.</div>
+    </div>
+
+    <div class="card">
+      <h3>Frontline Education follow-through: still no evidence of misuse reported</h3>
+      <p>Frontline's breach notification (3,709 employees' SSNs exposed) continues to stand with no reported evidence of misuse. The final scope and any fraud-channel evidence are still the things to watch for. If your shop enrolled affected staff in the TransUnion monitoring last week, that defense is already in place.</p>
+      <div class="action"><strong>Action:</strong> No new action this week. Keep the TransUnion enrollment reminder in your back pocket for any stragglers.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Stale cloud outage recaps</h3>
+      <p>The October 2025 AWS, Azure, and Cloudflare outage stories keep resurfacing in searches. Nothing current. Your dashboards can stay boring another week.</p>
+    </div>
+
+    <div class="card">
+      <h3>Crypto-heist headlines</h3>
+      <p>Big numbers, hot wallets, zero relevance to enterprise IT. File under "glad that's not me."</p>
+    </div>
+
+    <div class="card">
+      <h3>Unverified leak-site claims</h3>
+      <p>Nothing in the tracked set corroborated a real intrusion this week. Tracked, but not worth your time until someone confirms one.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>November Patch Tuesday lands November 10.</strong> Four weeks out. Clear the October backlog now so next month's cycle starts clean.</li>
+        <li><strong>Tracked alerts: expect normal volume to return.</strong> The pipeline is live again; next Tuesday's edition should have the usual zero-day, KEV, breach, and ransomware items.</li>
+        <li><strong>VPN browser-auth fallout.</strong> Watch helpdesk ticket trends this week to see whether the Cisco sign-in change lands cleanly or needs a second round of user comms.</li>
+        <li><strong>Frontline Education follow-through.</strong> Still watching for an official disclosure with final scope and any evidence of misuse in fraud channels.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #4, week of October 7 - October 13, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+</body>
+</html>
