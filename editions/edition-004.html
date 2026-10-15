@@ -27,6 +27,14 @@
     <h1>Edition #4: Week of October 7 - October 13, 2026</h1>
     <p class="meta">Published Tuesday, October 13, 2026. Curated from 0 new tracked alerts.</p>
 
+    <section class="edition-podcast" id="listen">
+      <h2 class="podcast-heading">Listen to this edition</h2>
+      <p class="podcast-meta">Marcus reads Edition #4 &middot; 7:24</p>
+      <audio controls preload="metadata" src="../audio/edition-004.mp3"></audio>
+      <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+    </section>
+
+
     <p class="lede">A second quiet week in the tracked set. The alert pipeline is back up after the September 29 - October 5 pause, but nothing qualifying showed up October 7 - 13: no fresh zero-days, no new KEV additions, no qualifying breaches. So this edition is built from the two things that actually land today: October Patch Tuesday is today, and the Cisco VPN browser-auth change goes live today. Everything else is the ongoing awareness-month work you were probably already doing.</p>
 
     <img src="../assets/edition-004/hero.png" alt="Dark illustration of a server room at night with a glowing alert panel and a patch being applied to a circuit node" class="hero-img">
@@ -120,5 +128,41 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-004.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
 </body>
 </html>
