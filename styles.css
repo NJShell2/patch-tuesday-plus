@@ -248,3 +248,41 @@ h2 {
   .site-header .brand { font-size: 1.4rem; }
   .signup form { flex-direction: column; }
 }
+
+/* Edition podcast player (embedded at the top of each edition) */
+.edition-podcast {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 20px 0 8px;
+}
+.edition-podcast .podcast-heading {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+}
+.edition-podcast .podcast-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.edition-podcast audio {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+.edition-podcast .share-btn {
+  background: #eef2f7;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.edition-podcast .share-btn:hover { background: #e2e9f2; }
+.edition-podcast.flash { animation: podcast-flash 2.5s ease; }
+@keyframes podcast-flash {
+  0%, 100% { box-shadow: none; }
+  20%, 60% { box-shadow: 0 0 0 3px var(--accent); }
+}
