@@ -27,6 +27,14 @@
     <h1>Edition #1: Week of September 15-22, 2026</h1>
     <p class="meta">Published Wednesday, September 23, 2026. Curated from 22 tracked alerts.</p>
 
+    <section class="edition-podcast" id="listen">
+      <h2 class="podcast-heading">Listen to this edition</h2>
+      <p class="podcast-meta">Marcus reads Edition #1 &middot; 13:21</p>
+      <audio controls preload="metadata" src="../audio/edition-001.mp3"></audio>
+      <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+    </section>
+
+
     <p class="lede">This was a patching week, not a watching week. Three actively exploited flaws hit core infrastructure: identity services, email gateways, and firewall management servers. If you run any of those, the top of this page is your to-do list. The rest is what got stolen, who got hit, and what went down while you were patching.</p>
 
     <img src="../assets/edition-001/hero.png" alt="Dark illustration of three core infrastructure monoliths struck by exploit lightning while a technician applies patch seals" class="hero-img">
@@ -205,5 +213,41 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-001.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
 </body>
 </html>
