@@ -27,6 +27,14 @@
     <h1>Edition #3: Week of September 30 - October 6, 2026</h1>
     <p class="meta">Published Tuesday, October 6, 2026. Curated from 3 tracked alerts.</p>
 
+    <section class="edition-podcast" id="listen">
+      <h2 class="podcast-heading">Listen to this edition</h2>
+      <p class="podcast-meta">Marcus reads Edition #3 &middot; 7:26</p>
+      <audio controls preload="metadata" src="../audio/edition-003.mp3"></audio>
+      <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+    </section>
+
+
     <p class="lede">A quiet week for zero-days in the tracked set. The alert pipeline paused September 29 through October 5, so this edition covers what actually showed up in tracked sources: an HR-vendor breach putting thousands of employee Social Security numbers in play, the AI-powered phishing wave heating up during Cybersecurity Awareness Month, and a VPN sign-in change worth prepping your users for before October 13. Full coverage resumes this week.</p>
 
     <img src="../assets/edition-003/hero.png" alt="Dark illustration of a night-time network operations desk with glowing server racks" class="hero-img">
@@ -120,5 +128,41 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-003.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
 </body>
 </html>
