@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #5: Week of October 14 - October 20, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #5: the Cisco VPN browser-auth change hits its first week, October Patch Tuesday stragglers become the exposure, and IT/OT convergence takes the awareness-month spotlight. October 14 - October 20, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #5: Week of October 14 - October 20, 2026</h1>
+    <p class="meta">Published Tuesday, October 20, 2026. Curated from 0 new tracked alerts.</p>
+
+    <section class="edition-podcast" id="listen">
+      <h2 class="podcast-heading">Listen to this edition</h2>
+      <p class="podcast-meta">Marcus reads Edition #5 &middot; 7:32</p>
+      <audio controls preload="metadata" src="../audio/edition-005.mp3"></audio>
+      <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+    </section>
+
+
+    <p class="lede">A third quiet week in the tracked set. The alert pipeline has been dry since September 29: no fresh zero-days, no new KEV additions, no qualifying breaches, no ransomware on critical targets, no major outages for the week of October 14 to 20. So this edition is built from what actually landed in curated sources: the Cisco VPN browser-auth change has been live for a full week, Purdue's IT newsroom published an IT/OT convergence piece for Cybersecurity Awareness Month, and the October Patch Tuesday stragglers are now a week old.</p>
+
+    <img src="../assets/edition-005/hero.png" alt="Dark illustration of a night-time network operations center with glowing server racks, an amber alert panel, and a security patch shield pressed onto a circuit node" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>1. Cisco Secure Client browser-auth: one week in</h3>
+      <img src="../assets/edition-005/patch-1.png" alt="Laptop at night with a glowing browser authentication window and a tunnel of light representing the VPN connection behind it" class="card-img">
+      <p>Cisco shifted VPN sign-in to a browser window or tab using SSO and Microsoft MFA starting October 13. This was a prep item two editions ago and a launch-day item last edition; now it is a week-in-review item. The key nuance still stands: Entra picks the authentication method from whatever each user has registered, not from the My Sign-Ins default. Users with stale or missing MFA methods hit a wall at the new flow with no obvious fix, and the browser redirect still looks like a phishing attempt to anyone who was not told about it.</p>
+      <p>Who is affected: shops running Cisco Secure Client with Entra SSO and Microsoft MFA. Everyone else gets another free lesson in how SSO vendors keep moving auth into the browser.</p>
+      <div class="action"><strong>Action:</strong> Check your helpdesk ticket trend for this week. A small bump means your user comms worked; a big one means you need a second round showing what the legitimate browser flow looks like. If you never audited registered MFA methods, do it now, because the users who hit walls last week are still hitting them.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>2. October Patch Tuesday stragglers, one week in</h3>
+      <img src="../assets/edition-005/patch-2.png" alt="Rows of workstations in a dark office at night with glowing update progress bars at different stages and a calendar page lit by monitor light" class="card-img">
+      <p>The October updates landed October 13. One week later, the exposure math has changed: the patches are public, which means attackers have had seven days to reverse-engineer them and build working exploits. Any system still unpatched from the October 13 cycle is now the soft target. One week of delay on a known patch is when the risk curve gets steep, and stragglers from this cycle become the targets of next month's scanning campaigns.</p>
+      <p>Who is affected: every shop running Windows, plus the accompanying updates from Adobe and the browser vendors. If your fleet auto-patches, your job is verification, not the install itself.</p>
+      <div class="action"><strong>Action:</strong> Verify that your patch reporting is actually truthful, because tools that claim everything is current are not always telling you the truth. Clear last week's leftovers first, then confirm your server maintenance windows actually happened and covered every system they were supposed to.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge info">Plan</span>
+      <h3>3. IT/OT convergence takes the awareness-month spotlight</h3>
+      <img src="../assets/edition-005/patch-3.png" alt="Industrial control panels and gauges merging into server blades and circuit traces with a glowing dividing line and warning beacon" class="card-img">
+      <p>Purdue's IT newsroom published "Protect critical systems and your data" on October 14 as its Cybersecurity Awareness Month piece on IT/OT convergence. The core message: IT and operational technology are converging, and the same hygiene rules apply on both sides. Patch your devices. Keep personal devices off research networks. Report odd behavior to your security team. Back up before ransomware, not after.</p>
+      <p>Who is affected: any organization with research networks, operational technology, or users who mix personal devices with work systems. That is a bigger share of shops than most admins want to admit, because lab equipment, industrial controls, and building systems tend to live in a blind spot the regular patch cycle never touches.</p>
+      <div class="action"><strong>Action:</strong> If you run anything that looks like operational technology, make sure it is on somebody's patch list and not sitting in a forgotten subnet. The article also links a BTAA session on the state of critical infrastructure, worth a skim for the sector context.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>Frontline Education follow-through: still no evidence of misuse reported</h3>
+      <p>Frontline's breach notification (3,709 employees' SSNs exposed) continues to stand with no reported evidence of misuse. The final scope disclosure and any fraud-channel evidence are still the things to watch for. If your shop enrolled affected staff in the TransUnion monitoring two editions ago, that defense is already in place.</p>
+      <div class="action"><strong>Action:</strong> Nothing new this week. Keep the TransUnion enrollment reminder in your back pocket for any stragglers.</div>
+    </div>
+
+    <div class="card">
+      <h3>Cybersecurity Awareness Month enters its final stretch</h3>
+      <p>The month ends October 31, and the AI-phishing wave flagged two editions ago has not slowed: the lures look personal and grammatical, and deepfake voice and video are turning up in wire-transfer and gift-card scams. If you have only sent one or two awareness notes this month, the final week is your last clean shot at a third.</p>
+      <div class="action"><strong>Action:</strong> Same message as before: no money moves and no credential sharing on a single channel, ever, and urgent requests get verified through a second channel.</div>
+    </div>
+
+    <div class="card">
+      <h3>The tracked set stays dry</h3>
+      <p>The alert pipeline is back, but nothing has met the bar since September 29: no qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages. A quiet week in the tracked set is a quiet week, not necessarily a quiet world, so this edition reflects coverage, not a guarantee.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence and use the calm to clear backlog. When volume returns, future editions will get meatier.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Stale cloud outage recaps</h3>
+      <p>The October 2025 AWS, Azure, and Cloudflare outage stories keep resurfacing in searches. Nothing current. Your dashboards can stay boring another week.</p>
+    </div>
+
+    <div class="card">
+      <h3>Crypto-heist headlines</h3>
+      <p>Big numbers, hot wallets, zero relevance to enterprise IT. File under "glad that's not me."</p>
+    </div>
+
+    <div class="card">
+      <h3>Unverified leak-site claims</h3>
+      <p>Nothing in the tracked set corroborated a real intrusion this week. Tracked, but not worth your time until someone confirms one.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>November Patch Tuesday lands November 10.</strong> Three weeks out. Clear the October backlog now so next month's cycle starts clean.</li>
+        <li><strong>Cisco browser-auth: week-two verdict.</strong> Watch the ticket trend to see whether the sign-in change landed cleanly or needs another round of user comms.</li>
+        <li><strong>Frontline Education follow-through.</strong> Still watching for the final scope disclosure and any fraud-channel evidence.</li>
+        <li><strong>Awareness Month wraps October 31.</strong> The final reminder round is your last scheduled shot at a third awareness note.</li>
+        <li><strong>Tracked alerts: when volume returns, editions get meatier.</strong> Expect the usual zero-day, KEV, breach, and ransomware items back on this page once the pipeline picks something up.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #5, week of October 14 - October 20, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-005.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
+</body>
+</html>
