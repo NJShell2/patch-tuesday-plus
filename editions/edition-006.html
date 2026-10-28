@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #6: Week of October 21 - October 27, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #6: PHP2Shell turns a fourteen-year-old PHP flaw into a global patching emergency, the ConnectWise breach puts thousands of companies in the crosshairs, and Railway tells all users to rotate their keys. October 21 - October 27, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #6: Week of October 21 - October 27, 2026</h1>
+    <p class="meta">Published Wednesday, October 28, 2026. Curated from TechCrunch Security and Security Now episode 1102; 0 new tracked alerts in the alert pipeline.</p>
+
+    <section class="edition-podcast" id="listen">
+      <h2 class="podcast-heading">Listen to this edition</h2>
+      <p class="podcast-meta">Marcus reads Edition #6 &middot; 9:27</p>
+      <audio controls preload="metadata" src="../audio/edition-006.mp3"></audio>
+      <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+    </section>
+
+    <p class="lede">The quiet stretch ended this week, and it ended loudly. A fourteen-year-old flaw in PHP turned into a global patching emergency, with governments pulling sites offline and CISA confirming active exploitation. A breach at ConnectWise put roughly 2,250 organizations in the crosshairs through stolen vendor credentials. And developer platform Railway told every user to rotate their keys after attackers may have reached decrypted secrets. The tracked alert pipeline itself is still dry since September 29, but the curated sources delivered the biggest week of the year so far.</p>
+
+    <img src="../assets/edition-006/hero.png" alt="Dark illustration of a vast night-time web of glowing server racks connected by tangled threads of light, with one central node cracked and glowing red" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. PHP2Shell: fourteen years of PHP, remotely exploitable</h3>
+      <img src="../assets/edition-006/patch-1.png" alt="A web server rack at night with a cracked glowing code panel and a red warning beacon, a shield pressed over the crack" class="card-img">
+      <p>Two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, allow unauthenticated remote code execution: an attacker can run code on a vulnerable server over the internet with no password and no login. The flaws were introduced in PHP 5.4, released March 1, 2012, and every release since was vulnerable until last week. The bugs were known for years but left unfixed because exploitation had not been demonstrated. In 2026, researchers at Calif and Wiz independently proved it could be done, using AI-assisted analysis, and the fixes were coordinated quietly for two months through OpenAI's Patch the Planet effort before patches landed October 21. The news still leaked two days early.</p>
+      <p>VulnCheck found PHP on more than 2.6 million internet-facing hosts, and said 99.998% of them were vulnerable or likely vulnerable. About 1.1 million of those hosts, 42%, run end-of-life PHP branches with no official patched release. VulnCheck also recorded growing numbers of attempted exploitation in the wild, with attackers adopting at least five public exploit kits within a day. On October 27, CISA confirmed hackers are now actively exploiting both bugs and ordered civilian federal agencies to fix their systems within three days.</p>
+      <p>Who is affected: anyone running a website, app, or internal tool on PHP, including shops that do not think of themselves as PHP shops. WordPress, Drupal, Laravel, Nextcloud, Moodle, and the cPanel and Plesk control panels all run on PHP, and PHP is often hidden behind systems that do not advertise it.</p>
+      <div class="action"><strong>Action:</strong> Patch every supported PHP branch to its fixed release right now, not in the next maintenance window. Inventory your hidden PHP, including WordPress and Laravel installs and anything behind a hosting panel. If you are on an end-of-life branch with no official fix, upgrade to a supported branch, or isolate that system behind a web application firewall and treat the upgrade as an emergency. Then hunt your logs for exploitation attempts, because attempts started before the patches did.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>2. ConnectWise breach: vendor credentials open 2,250 doors</h3>
+      <img src="../assets/edition-006/patch-2.png" alt="A remote support control room at night with rows of monitors showing many small company networks, one connection line glowing red where an intruder slipped through" class="card-img">
+      <p>Microsoft researchers reported October 22 that China state-aligned hackers broke into ConnectWise's cloud backup service and stole application credentials used to link ConnectWise to its corporate customers. With those credentials, the hackers could sign in to a customer's Microsoft-hosted environment as if they were an authorized user, and read emails and other files. Microsoft said the hackers used AI agents to hit around 2,250 organizations at a rate of almost 3,000 attempted sign-ins per minute, a speed that gives defenders very little time to detect and respond. ConnectWise paused access to its cloud backup system and said it was working on restoring the service. The full scope of stolen credentials is still unconfirmed.</p>
+      <p>Who is affected: any organization that uses ConnectWise cloud backup, and any managed service provider whose customers rely on it. This is a supply chain breach: the attacker did not have to break into your network, they walked in through a vendor you trusted.</p>
+      <div class="action"><strong>Action:</strong> If you use ConnectWise cloud backup, rotate every credential tied to that integration now, and review Microsoft sign-in logs for sessions you cannot explain, especially bulk or rapid sign-in attempts. Enforce multi-factor authentication on every account the integration touches, and do not wait for ConnectWise to confirm your organization was in scope before you act. If you are a managed service provider, notify affected customers and check their tenants too, because the exposure spreads downstream.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>3. Railway: every user told to rotate their keys</h3>
+      <img src="../assets/edition-006/patch-3.png" alt="A developer workstation at night with glowing key shapes floating above the keyboard, old keys dissolving and fresh keys forming" class="card-img">
+      <p>Developer platform Railway confirmed October 22 that a cyberattack may have accessed encrypted environment variables and, for some of them, obtained the decrypted contents. Environment variables are where apps keep their passwords and API keys for databases, cloud storage, and other services, and with those secrets an attacker can log in as the rightful owner. Railway said its initial analysis suggested the breach was limited to a subset of users, but it still urged all users to revoke and rotate all of their keys. It briefly paused new builds and deployments during the investigation, and its founder promised a post-mortem. The root cause is still unconfirmed.</p>
+      <p>Who is affected: every Railway user, and by extension every service those Railway apps connect to. If your team deploys on Railway, your database passwords, cloud keys, and third-party API tokens are all in the blast radius until rotated.</p>
+      <div class="action"><strong>Action:</strong> Revoke and rotate every API key, cloud key, and database password stored in Railway environment variables, then audit those services for access you cannot explain. Do not rotate only the keys you think were touched, because Railway itself could not narrow the scope, and neither can you. Treat any secret that lived in Railway as exposed until it is replaced.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>Quest Diagnostics confirms a breach of patient records</h3>
+      <p>Quest Diagnostics confirmed a cyberattack on its Quanum lab testing platform, which doctors, hospitals, and practices use to order tests and handle billing. Quest said patient records and protected health information were taken, but it has not said how many patients are affected, when the breach began, or what specific kinds of data were taken. This is Quest's second known major breach in a decade, after 11.9 million patient records were lost through a third-party billing company in 2019.</p>
+      <div class="action"><strong>Action:</strong> If your organization works with Quest or Quanum, watch for the scope disclosure and be ready for patient notification questions. Nothing to rotate yet, but do not file this one away.</div>
+    </div>
+
+    <div class="card">
+      <h3>GMO Japan: hackers posted stolen customer data</h3>
+      <p>Japan internet giant GMO said October 27 that hackers posted stolen customer data. Details are still thin, which is itself the point this week: a household-name provider having customer data posted in the same week as everything else shows how broad the damage was.</p>
+      <div class="action"><strong>Action:</strong> If you do business with GMO services, watch for customer notification details and check whether any shared credentials need rotating.</div>
+    </div>
+
+    <div class="card">
+      <h3>Node.js flaws disclosed in the same week</h3>
+      <p>Security Now also flagged a fresh set of Node.js vulnerabilities disclosed in the same week as PHP2Shell. Node runs the dynamic web for a huge share of large companies, and a flaw in one widely used product can spread through the supply chain to tens of thousands of organizations.</p>
+      <div class="action"><strong>Action:</strong> Check your Node versions against the vendor advisories and patch alongside your PHP work, not after it.</div>
+    </div>
+
+    <div class="card">
+      <h3>Bank of America: do not hand your banking password to your AI assistant</h3>
+      <p>Bank of America publicly asked customers not to share their banking passwords with AI assistants. That sounds like consumer advice, but it is an admin problem too: staff are already pasting credentials and sensitive data into AI tools, and every one of those pastes is a credential you no longer control.</p>
+      <div class="action"><strong>Action:</strong> If you have not set an AI use policy with a clear rule against sharing passwords and customer data, this week is your reason to write one.</div>
+    </div>
+
+    <div class="card">
+      <h3>Cisco browser-auth, week two; October stragglers, week two</h3>
+      <p>The Cisco Secure Client browser authentication change is now two weeks in, and October Patch Tuesday stragglers are now two weeks old. If your helpdesk tickets spiked and never came back down, your user communications need a second round. If any system is still unpatched from the October 13 cycle, it has spent two weeks as a known, public target.</p>
+      <div class="action"><strong>Action:</strong> Clear both backlogs this week, before November Patch Tuesday adds a fresh cycle on top of them.</div>
+    </div>
+
+    <div class="card">
+      <h3>The tracked set stays dry</h3>
+      <p>The alert pipeline is back, but nothing has met the bar since September 29: no qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages in the tracked set. This edition was built from TechCrunch Security and Security Now episode 1102, because that is where the week's real news landed. A quiet pipeline is not a quiet world.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence and use the calm in the pipeline to clear backlog. When volume returns, future editions will get meatier.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Blackwall funding headline</h3>
+      <p>A valuation quadrupling to $2.2 billion is startup news, not security news. Skip it.</p>
+    </div>
+
+    <div class="card">
+      <h3>Crypto-heist headlines</h3>
+      <p>Big numbers, hot wallets, zero relevance to enterprise IT. File under "glad that's not me."</p>
+    </div>
+
+    <div class="card">
+      <h3>Fake PHP proof-of-concept repos</h3>
+      <p>VulnCheck reviewed hundreds of public PHP exploit repos this week and found most of them fake or lab-only. Do not test them against your own systems, and do not trust them as detection guides.</p>
+    </div>
+
+    <div class="card">
+      <h3>Stale cloud outage recaps</h3>
+      <p>Nothing current this week. Your dashboards can stay boring on that front.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>November Patch Tuesday lands November 10.</strong> Two weeks out. Finish the PHP patching now so next month's cycle starts clean.</li>
+        <li><strong>PHP2Shell follow-through.</strong> Expect exploitation to spread, end-of-life branches to stay exposed, and more AI-discovered flaws to come out of embargo, exactly as Gibson and Cloudflare's Matthew Prince warned.</li>
+        <li><strong>ConnectWise restoration and credential scope.</strong> Still waiting on the full scope of stolen credentials and the restored backup service.</li>
+        <li><strong>Railway post-mortem and Quest scope disclosure.</strong> Both promised or pending; both change the action list when they land.</li>
+        <li><strong>South Korea financial attacks carry over.</strong> Already in the news as this edition publishes, this story belongs to next week's edition.</li>
+        <li><strong>Awareness Month wraps October 31.</strong> The final reminder round is your last scheduled shot at a third awareness note, and after this week nobody needs convincing that the lures are real.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #6, week of October 21 - October 27, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-006.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
+</body>
+</html>
