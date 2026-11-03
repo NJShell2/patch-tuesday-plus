@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #7: Week of October 28 - November 3, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #7: hackers turn up the heat on Europe's supermarket freezers and spoil food across four countries, a breach exposes personnel records for more than 40,000 Homeland Security employees, and a password left inside Applebee's app opens its customer database. October 28 - November 3, 2026.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #7: Week of October 28 - November 3, 2026</h1>
+    <p class="meta">Published Tuesday, November 3, 2026. Curated from TechCrunch Security; Security Now episode 1103 had not aired at publish time; 0 new tracked alerts in the alert pipeline.</p>
+
+    <section class="edition-podcast" id="listen">
+      <h2 class="podcast-heading">Listen to this edition</h2>
+      <p class="podcast-meta">Marcus reads Edition #7 &middot; 9:45</p>
+      <audio controls preload="metadata" src="../audio/edition-007.mp3"></audio>
+      <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+    </section>
+
+    <p class="lede">This week the attacks got physical. Hackers turned up the temperature on supermarket freezers across Europe and spoiled food in dozens of stores, a reminder that an unpatched box on the network can rot inventory, not just leak data. A breach at the Department of Homeland Security exposed personnel records for more than 40,000 employees, including border and immigration agents. And Applebee's fixed a flaw where a database password sat inside its own mobile app, open to anyone who looked. The tracked alert pipeline is still dry since September 29, but the curated sources carried another full week.</p>
+
+    <img src="../assets/edition-007/hero.png" alt="Dark illustration of a supermarket aisle at night with glowing freezer units, one door open with warm red warning light spilling out" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. Supermarket freezers hacked across Europe: food spoiled in four countries</h3>
+      <img src="../assets/edition-007/patch-1.png" alt="A supermarket freezer unit at night with its temperature turned up, frost melting and a red warning glow inside the glass door" class="card-img">
+      <p>A second wave of cyberattacks hit supermarket refrigerators across Europe this week, raising temperatures and spoiling food at dozens of stores in Belgium, Ireland, Luxembourg, and Sweden. Supermarket giants Ahold Delhaize and Colruyt confirmed the hacks, and one Belgian company that operates Delhaize's systems said the hackers changed the settings to defrost. Stores had to throw out goods that had defrosted or were no longer safe to eat.</p>
+      <p>The cause points to internet-connected refrigerators made by Danish company Danfoss, which is no longer providing security updates for the units. Security company Claroty warned back in August that those refrigerator units were at risk of remote hacks and outages. This wave follows earlier refrigerator hacks in France last month that spoiled food at hundreds of supermarkets. US Department of Defense officials are reportedly investigating whether freezer units on military bases were hacked by Iran-backed hackers, but that claim is unconfirmed.</p>
+      <p>Who is affected: any organization with internet-connected refrigeration, cold storage, or building systems it forgot were on the network. Grocery, food distribution, and facilities teams are the obvious cases, but the real lesson is broader: any operational device with a network connection and no vendor support is an open door.</p>
+      <div class="action"><strong>Action:</strong> Inventory every internet-connected operational device you own, starting with refrigeration, HVAC, and building controls. Take unsupported units off the internet and put them behind a segmented network with no inbound access. Check temperature logs for unexplained changes, and if you run Danfoss units, contact the vendor about replacement or mitigation now, because no patch is coming for units out of support.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>2. Homeland Security breach: personnel records for 40,000-plus employees exposed</h3>
+      <img src="../assets/edition-007/patch-2.png" alt="A government office directory wall at night made of many small glowing identity cards, one card pulled loose and glowing red" class="card-img">
+      <p>A hacker using the handle Department of Peace stole personnel data for more than 40,000 US Department of Homeland Security employees and published it online. The records include names, job titles, work email addresses, cell phone numbers, and office locations. More than half the records, about 21,000, relate to Customs and Border Protection employees; another 10,000 cover Immigration and Customs Enforcement and its Homeland Security Investigations unit; just under 1,000 cover staff at CISA, the federal cybersecurity defense agency. TechCrunch verified a portion of the data as authentic, and timestamps suggest the records were exfiltrated around mid-August. The total is about one fifth of the department's workforce.</p>
+      <p>The hacker claimed the data came from an Okta single sign-on system used by Homeland Security staff and contractors. Okta said it is secure and has no evidence its data or systems were compromised, so the exact route into the data is unconfirmed. Homeland Security said it is aware of a potential breach and working to address it, but it is unclear whether the vulnerability has been fixed or whether the department knew about the theft before publication. Bluesky then blocked links to the nonprofit hosting the dataset, and a searchable copy of the data was taken offline after a takedown notice filed on the department's behalf.</p>
+      <p>Who is affected: directly, Homeland Security employees whose directory data is now public. For everyone else, this is a phishing and social engineering warning: a leaked employee directory is a ready-made target list, and attackers will use real names, titles, and phone numbers to make their lures believable.</p>
+      <div class="action"><strong>Action:</strong> Warn your staff that directory-style data is circulating and that phishing attempts using real names and titles are likely to get more convincing. If you do business with Homeland Security or its agencies, review your single sign-on logs for unusual access and confirm multi-factor authentication is enforced on every account tied to that integration. Do not go hunting for the leaked dataset yourself, and do not use it to contact people in it.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>3. Applebee's: a database password left inside its own app</h3>
+      <img src="../assets/edition-007/patch-3.png" alt="A smartphone on a restaurant table at night with a glowing key shape slipping out of its screen" class="card-img">
+      <p>Applebee's fixed a flaw that let anyone access the personal information of its registered customers, after a researcher found a password for an internal database buried inside the company's Android app. Researcher Robert Wiggins used AI-assisted searching to find the credential in thousands of lines of app source code, and TechCrunch verified it by decompiling the app and retrieving dummy account data from the database. The exposed data included customer names, email addresses, dates of birth, phone numbers, ZIP codes, veteran status, login counts, account creation dates, and the IP addresses of recent logins. Applebee's had at least 8.5 million customers enrolled in its rewards program as of last year, though the company would not say how many customers were exposed.</p>
+      <p>Applebee's parent company, Dine Brands, said its security team found no evidence of unauthorized access so far, but it would not say whether it has server logs that could prove that, or whether it has logs at all. Whether anyone actually accessed the database before the fix is therefore unconfirmed. The researcher could not alert the company directly because neither Applebee's nor Dine Brands offers a way to report security issues.</p>
+      <p>Who is affected: Applebee's customers, and by example every organization that ships a mobile app or client software. A hardcoded credential is one of the worst kinds of flaw, because anyone with the app can extract the key and log in to a remote system as an authorized user.</p>
+      <div class="action"><strong>Action:</strong> Scan your own apps and client software for hardcoded credentials, API keys, and private keys, and add secret scanning to your build pipeline if you do not have it. Rotate any credential that has ever shipped inside a client app, because once it ships, you must assume it is public. And publish a way for researchers to report flaws to you: Applebee's had no reporting channel, which is how a fixable problem stayed open until the press got involved.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>PHP2Shell follow-through: the vulnpocalypse warning</h3>
+      <p>Last week's PHP emergency is now a cleanup operation. Wiz's chief technology officer warned publicly that a wave of AI-discovered flaws in aging internet code is coming, and the PHP case is the template: old code, long unexamined, now cheap to analyze. End-of-life PHP branches still have no official fix, and exploitation attempts started before the patches did.</p>
+      <div class="action"><strong>Action:</strong> If your PHP patching from last week is not finished, finish it before November Patch Tuesday. Treat unpatched end-of-life PHP as an emergency, not a backlog item.</div>
+    </div>
+
+    <div class="card">
+      <h3>South Korea's financial industry hit again</h3>
+      <p>South Korean financial institutions took another wave of attacks this week, about a month after the September wave. Brokerage Daishin Securities reported a cyberattack that exposed personal information for 38,490 customers, including names, email addresses, and mobile phone numbers. Mirae Asset Global Investments and crypto exchange Bithumb reported separate incidents, but neither has confirmed that customer data was taken. Researchers linked the September wave to a suspected China-based hacker using an AI penetration testing tool, but the root cause of this latest wave is still under investigation and unconfirmed.</p>
+      <div class="action"><strong>Action:</strong> If you do business with South Korean financial firms, watch for customer notification details. The pattern to note is the repeat: one wave a month apart means the first incident did not close the hole.</div>
+    </div>
+
+    <div class="card">
+      <h3>Germany: lawmakers' iPhones may have been hit by spyware</h3>
+      <p>Germany's federal cybersecurity office warned that members of the Bundestag and other notable individuals received Apple threat notifications saying their iPhones may have been targeted by government-backed spyware. Apple does not attribute attacks to specific governments and does not say whether a phone was actually compromised, so the German office advised anyone who gets a notification to assume the device may be compromised. Apple sent its latest batch of threat notifications to users in 99 countries, and who is behind this round is unconfirmed.</p>
+      <div class="action"><strong>Action:</strong> If anyone in your organization receives an Apple threat notification, treat the device as compromised: isolate it, preserve it for investigation, and do not just update and move on. High-risk staff should already be on lockdown mode and hardware security keys.</div>
+    </div>
+
+    <div class="card">
+      <h3>Scopes still pending: ConnectWise, Railway, Quest</h3>
+      <p>Three stories from last week are still waiting on their second act. ConnectWise has not confirmed the full scope of stolen vendor credentials. Railway has not published its post-mortem. Quest Diagnostics has not said how many patients were affected or what kinds of data were taken. Until those disclosures land, the action lists from Edition #6 stand unchanged.</p>
+      <div class="action"><strong>Action:</strong> Keep the rotations and log reviews from last week in place. Do not roll back precautions because a vendor has gone quiet.</div>
+    </div>
+
+    <div class="card">
+      <h3>The tracked set stays dry</h3>
+      <p>No new item has met the tracked-alert bar since September 29: no qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages in the tracked set. This edition was built from TechCrunch Security, because that is where the week's real news landed. A quiet pipeline is not a quiet world.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence and use the calm in the pipeline to clear backlog, including the operational-device inventory above. When volume returns, future editions will get meatier.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Binance crypto theft headlines</h3>
+      <p>North Korean hackers are blamed for a record crypto theft worth billions, and Binance paused withdrawals. Big numbers, hot wallets, zero relevance to enterprise IT. File under "glad that's not me."</p>
+    </div>
+
+    <div class="card">
+      <h3>Upwind funding headline</h3>
+      <p>A $400 million raise after walking away from an acquisition offer is startup news, not security news. Skip it.</p>
+    </div>
+
+    <div class="card">
+      <h3>Surveillance spat in New York City politics</h3>
+      <p>The mayor-elect criticized a sports arena owner over surveillance technology. Civic politics, not an admin action item. Skip it.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>November Patch Tuesday lands November 10.</strong> One week out. Finish the PHP patching and the operational-device inventory now so next week's cycle starts clean.</li>
+        <li><strong>Freezer hack fallout.</strong> Watch for a Danfoss response, spread to more countries, and any confirmation of the reported US military base investigation.</li>
+        <li><strong>Homeland Security breach follow-through.</strong> Still waiting on confirmation of how the data was taken and whether the route has been fixed.</li>
+        <li><strong>Germany spyware attribution.</strong> Still unconfirmed who is behind the latest round of Apple threat notifications.</li>
+        <li><strong>ConnectWise, Railway, and Quest disclosures.</strong> Credential scope, post-mortem, and patient count are all still pending, and each one changes the action list when it lands.</li>
+      </ul>
+    </div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #7, week of October 28 - November 3, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-007.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
+</body>
+</html>
