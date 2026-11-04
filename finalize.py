@@ -46,7 +46,7 @@ PACK_SECTION = (
     '  <p class="fine">One-time purchase, free v1.x updates, single-seat commercial license. '
     'Delivered instantly by Payhip.</p>\n'
     '</div>')
-FREEKIT_URL = "https://payhip.com/b/1vIyB"
+FREEKIT_URL = "https://payhip.com/buy?s=1&cart_links%5B%5D=1vIyB&qty%5B1vIyB%5D=1"
 FREEKIT_SECTION = (
     '<div class="signup pack-promo" id="freekit">\n'
     '  <h2>Start with the free Triage Kit</h2>\n'
