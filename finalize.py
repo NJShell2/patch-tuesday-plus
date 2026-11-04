@@ -160,6 +160,41 @@ def draft_script(text, num):
                        f"editor review needed")
 
 
+SITE_BASE = "https://njshell2.github.io/patch-tuesday-plus/"
+
+
+def ensure_og_tags(html, url):
+    """Add basic Open Graph tags after the description meta, if absent."""
+    if "og:title" in html:
+        return html
+    tm = re.search(r"<title>([^<]*)</title>", html)
+    dm = re.search(r'<meta name="description" content="([^"]*)"', html)
+    if not tm or not dm:
+        return html
+    block = (f'<meta property="og:title" content="{tm.group(1)}">\n'
+             f'<meta property="og:description" content="{dm.group(1)}">\n'
+             '<meta property="og:type" content="article">\n'
+             f'<meta property="og:url" content="{url}">\n'
+             '<meta name="twitter:card" content="summary">\n')
+    m = re.search(r'<meta name="description"[^>]*>\n', html)
+    if not m:
+        return html
+    return html[:m.end()] + block + html[m.end():]
+
+
+def write_sitemap(ws):
+    """Regenerate sitemap.xml from the homepage plus every edition on disk."""
+    eds = sorted((ws / "editions").glob("edition-*.html"))
+    today = datetime.now(TZ).date().isoformat()
+    urls = [SITE_BASE] + [SITE_BASE + f"editions/{e.name}" for e in eds]
+    items = "\n".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>" for u in urls)
+    (ws / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{items}\n</urlset>\n")
+    return ws / "sitemap.xml"
+
+
 def gh_push(repo_path, local_path, message):
     out = run([str(GH), "put-file", REPO, repo_path, str(local_path),
                "--message", message, "--branch", "main"], timeout=600)
@@ -287,6 +322,12 @@ def main():
         ed_path.write_text(html)
         print("Pack promo: Payhip pack section inserted into the edition")
 
+    og_html = ensure_og_tags(html, SITE_BASE + f"editions/edition-{nnn}.html")
+    if og_html != html:
+        html = og_html
+        ed_path.write_text(html)
+        print("SEO: Open Graph tags inserted into the edition")
+
     idx_path = ws / "index.html"
     idx = idx_path.read_text()
     if PACK_URL not in idx:
@@ -326,6 +367,7 @@ def main():
                     f"Add briefing audio for Edition #{num}")
         gh_push(f"editions/edition-{nnn}.html", ed_path, f"Add Edition #{num}: {range_str}")
         gh_push("index.html", idx_path, f"Update homepage for Edition #{num}")
+        gh_push("sitemap.xml", write_sitemap(ws), f"Update sitemap for Edition #{num}")
         if "--styles" in args:
             gh_push("styles.css", ws / "styles.css", f"Update styles for Edition #{num}")
         status = ""
