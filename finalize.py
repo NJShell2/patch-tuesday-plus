@@ -43,6 +43,9 @@ PACK_SECTION = (
     'audits, and a Microsoft 365 license audit, plus a quick-start guide and sample CSVs. Built by '
     'a working IT desktop support engineer.</p>\n'
     f'  <a class="button" href="{PACK_URL}">Get the pack, $39 one time</a>\n'
+    '  <p>Also new: the <a href="https://payhip.com/b/YFrg1">Windows Patch &amp; Endpoint '
+    'Health Toolkit</a>, five read-only scripts for patch health, Windows 11 readiness, stale '
+    'computer accounts, local admin audits, and failed-update reports. $49 one time.</p>\n'
     '  <p class="fine">One-time purchase, free v1.x updates, single-seat commercial license. '
     'Delivered instantly by Payhip.</p>\n'
     '</div>')
