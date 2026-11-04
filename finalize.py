@@ -95,6 +95,11 @@ def edition_text(html):
     return strip_tags(body)
 
 
+PLUG_LINE = "Marcus: Get the free Patch Tuesday Triage Kit, linked right on this page."
+MID_LINE = ("Marcus: Quick break. The free Triage Kit pairs the one page patching order with a "
+            "read only script that flags failing machines early. Grab it free, linked on this page.")
+
+
 def draft_script(text, num):
     prompt = (
         f"Write the spoken briefing script for Patch Tuesday Plus Edition #{num} from the edition "
@@ -103,9 +108,14 @@ def draft_script(text, num):
         "now items with the most time (what happened, who is affected, what to do), then Watch "
         "items with moderate time, then one brisk dismissive line per Ignore item, then the On "
         "deck look-ahead.\n\n"
+        "Sponsor lines, both mandatory and verbatim:\n"
+        f"- The script MUST begin with this exact line, word for word, as its first line: {PLUG_LINE}\n"
+        "- After you finish covering the FIRST Patch now item, and before you begin the second "
+        f"Patch now item, insert this exact line, word for word, on its own line: {MID_LINE}\n"
+        "- Do not alter, repeat, or add any other sponsor or product mention.\n\n"
         "Format rules, all mandatory:\n"
         "- Every non-blank line starts with 'Marcus: '\n"
-        "- 1200 to 1600 words total\n"
+        "- 1200 to 1600 words total, counting the two sponsor lines\n"
         "- Spell out all numbers as words\n"
         "- No stage directions, no markup, no emoji, no URLs read aloud\n"
         "- No em dashes\n"
@@ -122,6 +132,19 @@ def draft_script(text, num):
         lines = [ln for ln in script.splitlines() if ln.strip()]
         script = "\n".join(ln if ln.startswith("Marcus: ") else "Marcus: " + ln.lstrip("- ").strip()
                            for ln in lines)
+        # Sponsor opening plug: guaranteed first line, exactly once (deterministic, not left to the draft).
+        slines = [ln for ln in script.split("\n") if ln != PLUG_LINE]
+        slines.insert(0, PLUG_LINE)
+        script = "\n".join(slines)
+        # Sponsor mid-briefing pitch: must appear verbatim between the first and second Patch now items.
+        if MID_LINE not in script:
+            if attempt == 1:
+                prompt += ("\n\nYour previous draft was missing the mandatory mid-briefing sponsor "
+                           "line. Write a fresh draft and include the exact sponsor line given "
+                           "above, on its own line, between the first and second Patch now items.")
+                continue
+            raise RuntimeError("draft script missing the mandatory Triage Kit mid-briefing line "
+                               "after 2 attempts; editor review needed")
         words = len(script.split())
         if "http" in script or "—" in script:
             raise RuntimeError("draft script failed validation (URL or em dash present)")
