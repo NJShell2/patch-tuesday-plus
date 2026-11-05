@@ -45,7 +45,7 @@ PACK_SECTION = (
     f'  <a class="button" href="{PACK_URL}">Get the pack, $39 one time</a>\n'
     '  <p>Also new: the <a href="https://payhip.com/b/YFrg1">Windows Patch &amp; Endpoint '
     'Health Toolkit</a>, five read-only scripts for patch health, Windows 11 readiness, stale '
-    'computer accounts, local admin audits, and failed-update reports. $49 one time.</p>\n'
+    'computer accounts, local admin audits, and failed-update reports. $49 one time. And for the cloud side: the <a href="https://payhip.com/b/jFcYM">Microsoft 365 &amp; Entra Admin Pack</a>, five read-only Graph reports (inactive users, MFA gaps, license waste, guests, shared mailboxes), $49.</p>\n'
     '  <p class="fine">One-time purchase, free v1.x updates, single-seat commercial license. '
     'Delivered instantly by Payhip.</p>\n'
     '</div>')
