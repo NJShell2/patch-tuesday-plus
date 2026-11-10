@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #8: Week of November 4 - November 10, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #8: N-able pulls its remote access service offline after dozens of zero-day bugs go public, the US government warns of an ongoing threat to internet-connected freezers, and DreamHost admits hackers stole customer files and inboxes over months. November 4 - November 10, 2026.">
+<meta property="og:title" content="Edition #8: Week of November 4 - November 10, 2026 - Patch Tuesday Plus">
+<meta property="og:description" content="Patch Tuesday Plus Edition #8: N-able pulls its remote access service offline after dozens of zero-day bugs go public, the US government warns of an ongoing threat to internet-connected freezers, and DreamHost admits hackers stole customer files and inboxes over months. November 4 - November 10, 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://njshell2.github.io/patch-tuesday-plus/editions/edition-008.html">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #8: Week of November 4 - November 10, 2026</h1>
+    <p class="meta">Published Tuesday, November 10, 2026. Curated from TechCrunch Security; no new Security Now episode aired this week; 0 new tracked alerts in the alert pipeline.</p>
+<section class="edition-podcast" id="listen">
+  <h2 class="podcast-heading">Listen to this edition</h2>
+  <p class="podcast-meta">Marcus reads Edition #8 &middot; 10:34</p>
+  <audio controls preload="metadata" src="../audio/edition-008.mp3"></audio>
+  <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+</section>
+
+    <p class="lede">This week a remote access platform went dark on purpose, the freezer attacks got a federal warning, and a web host admitted a break-in that ran for months. N-able pulled its hosted remote access service offline after a researcher published dozens of zero-day bugs with no advance notice. The US government warned of an ongoing cyber threat to industrial refrigeration, the same campaign that spoiled food across Europe last week. And DreamHost said hackers stole customer files and inboxes in an attack that began in August. The tracked alert pipeline is still dry since September 29, but the curated sources carried another full week.</p>
+
+    <img src="../assets/edition-008/hero.png" alt="Dark illustration of a network operations center at night, one glowing remote access screen gone dark while a red warning light glows beside it" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. N-able pulls its remote access service offline after dozens of zero-days go public</h3>
+      <img src="../assets/edition-008/patch-1.png" alt="A laptop on a dark desk at night with its remote access screen gone black, the network cable unplugged and a red warning glow on the keyboard" class="card-img">
+      <p>Remote access company N-able took its cloud-hosted N-Central service offline this week after security researcher Ben Bales published dozens of zero-day bugs on GitHub, giving the company no advance notice to fix them. Bales dubbed the flaws Able2Shell, describing them as a mix of vulnerabilities capable of stealing credentials, creating new administrative accounts, and gaining root access to affected systems. N-able said its hosted offering is offline while it secures the environments and implements remediation, and it urged customers running their own self-hosted N-Central servers to take them down too, fearing attackers could use the publicly disclosed exploits to break into customer networks.</p>
+      <p>Bales told Bleeping Computer he published the bugs because the company allegedly failed to patch flaws he had reported in a different product. N-able said it has no evidence of successful exploitation against any customer environment, but a company spokesperson did not answer whether it has the server logs to check, so whether anyone used the flaws before publication is unconfirmed. Remote access tools are a frequent target for attackers because they can grant broad access to a whole network, which is exactly why N-able chose to go dark rather than stay up and exposed.</p>
+      <p>Who is affected: any organization using N-able N-Central, especially self-hosted deployments and the managed service providers who run it for their clients. If your MSP uses N-Central, you are affected through them even if you never touch the console yourself.</p>
+      <div class="action"><strong>Action:</strong> If you run self-hosted N-Central, take it offline now and keep it down until N-able ships a fix. If your MSP runs it, ask them today what they have done and when service returns. Review N-Central admin accounts and logs for unexpected accounts or credential use, and rotate credentials tied to the service. Do not bring a self-hosted server back online on the strength of the published exploits being old news; they are public now, and that is the point.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>2. US government warns of an ongoing threat to industrial freezers</h3>
+      <img src="../assets/edition-008/patch-2.png" alt="Industrial freezer units in a dark warehouse at night, frost melting off the glass doors with a red warning glow inside" class="card-img">
+      <p>CISA, the FBI, and the Departments of Agriculture, Health and Human Services, and Transportation issued a joint warning this week that hackers are targeting and compromising internet-connected refrigeration and cold chain monitoring systems in grocery stores and cold storage facilities. The agencies called it an ongoing cyber threat hitting food, agriculture, transportation, and medicine shipping. If exploited, the attackers could change temperatures and cause fire hazards, loss of inventory, and damage to the equipment itself. A separate fact sheet warned hackers may force units into continuous heating and defrost cycles, causing widespread inventory loss and equipment hazards.</p>
+      <p>This is the same campaign from last week's edition, now bigger. Two separate waves of attacks raised temperatures on freezers and chilling units in at least a dozen countries, spoiling defrosted food and destroying produce. Some affected systems were remote-controlled units made by Danish company Danfoss, which has stopped providing security updates for them. Hackers also targeted a blood bank in France, raising temperatures in cold units holding donated blood, but were stopped before the blood stores were compromised. The US Department of Defense is investigating hacks targeting freezers on military bases. The US government has not attributed the attacks to any group or government, though security researchers have broadly attributed them to Iran, and France's foreign minister blamed Iran this week for at least two waves of attacks on freezers in grocery stores and blood banks. That attribution is unconfirmed.</p>
+      <p>Who is affected: any organization with internet-connected refrigeration, cold storage, or building systems it forgot were on the network. Grocery, food distribution, healthcare, and facilities teams are the obvious cases, but the real lesson is broader: any operational device with a network connection and no vendor support is an open door.</p>
+      <div class="action"><strong>Action:</strong> Take remote control systems for refrigeration off the internet, change and strengthen their passwords, apply patches where any exist, and retire equipment the vendor no longer supports. Check temperature logs for unexplained changes, including defrost cycles you did not schedule. If you run Danfoss units out of support, contact the vendor about replacement or mitigation now, because no patch is coming for units out of support.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>3. DreamHost: hackers stole customer files and inboxes in a months-long attack</h3>
+      <img src="../assets/edition-008/patch-3.png" alt="A dark web hosting data center at night with an open mailbox glowing blue, files and envelopes slipping out of it" class="card-img">
+      <p>Web host DreamHost confirmed that hackers stole customer emails and credentials during a months-long cyberattack on its systems. The company disclosed the breach last week after it sparked a multi-day outage, during which it reset some customer passwords. In a breach notice filed with California's attorney general, DreamHost said the attack began in August and let hackers obtain session tokens, which keep users logged in after they enter their passwords. Stolen tokens let an attacker break in as if they were that user. The company said hackers exploited an unspecified vulnerability in DreamHost's file manager, which customers use to store their files.</p>
+      <p>DreamHost would not say why it did not detect the attack until last week, citing an ongoing investigation, and it would not say what the vulnerability is. The company said the flaw was unrelated to the PHP vulnerabilities discovered recently. A spokesperson said the number of affected customers is well under 10 percent but would not give a more precise figure; DreamHost touts about 400,000 paying customers.</p>
+      <p>Who is affected: DreamHost customers, directly, and anyone whose organization hosts sites or mail with them. Stolen inboxes are a phishing gold mine: attackers can read real threads and reply inside them, which makes their lures far more convincing than a cold email.</p>
+      <div class="action"><strong>Action:</strong> If you host with DreamHost, force password resets for every account, revoke active sessions, and review mail rules, forwarding, and delegates for changes you did not make. Warn staff that phishing using real DreamHost-hosted threads is likely. If you do not host with DreamHost, use this as the reminder to check your own host's breach history and your session token hygiene.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>Wyndham: a password inside its app opened its customer database</h3>
+      <p>Hotel giant Wyndham acknowledged a cybersecurity incident after researcher Robert Wiggins found a password inside the source code of its Android app that granted access to an internal company database hosted by Salesforce. The credential exposed customer names, email addresses, and Wyndham member numbers, plus customer login tokens that keep customers logged in to their apps, and Wyndham files and documents. The database held millions of entries, though Wiggins could not pin down an exact count; Wyndham touts about 129 million enrolled rewards members. The credential was revoked soon after TechCrunch contacted Wyndham's cybersecurity staff. This is Wiggins's second hardcoded credential discovery in two weeks, after finding a near-identical flaw in Applebee's app in last week's edition. He used AI tools for both, scanning thousands of lines of decompiled app code.</p>
+      <p>Wyndham said its security teams have no evidence of unauthorized access, but would not say whether it has server logs that could prove that, or whether it plans to notify customers or file with regulators. Whether anyone actually accessed the database before the fix is therefore unconfirmed. Wyndham also would not say how long the password sat inside the app, or how it plans to ship a long-term fix.</p>
+      <div class="action"><strong>Action:</strong> Scan your own apps and client software for hardcoded credentials, API keys, and private keys, and add secret scanning to your build pipeline if you do not have it. Rotate any credential that has ever shipped inside a client app, because once it ships, you must assume it is public. Two identical flaws in two weeks from one researcher using AI search means your apps are being scanned the same way, whether you know it or not.</div>
+    </div>
+
+    <div class="card">
+      <h3>More than 800 AI hacking tools left exposed to the web</h3>
+      <p>Security firm Censys found more than 800 distinct deployments of Artex, an open source AI penetration testing tool, accessible from the web without a password. Artex is a system of AI agents that can run cyberattacks from reconnaissance through data exfiltration with little human interaction, and it has been linked to several attacks since its public release in July, including the September attacks on South Korea's financial industry and the October attack on IT support giant ConnectWise. The exposed systems also leak attack tools such as implants used to hold persistent access to a victim's network. Not every Artex instance is run maliciously, and many are used by authorized testers, but the software does not need to be reachable from the internet at all. Artex has since announced it will go closed-source, though dozens of copies of its code remain on code-sharing sites.</p>
+      <div class="action"><strong>Action:</strong> If your team runs penetration testing tools, confirm none of them are reachable from the internet. More broadly, audit your own internet-facing services for things that were never meant to be public; attackers and researchers are both scanning for them.</div>
+    </div>
+
+    <div class="card">
+      <h3>Hugging Face warns attacks could make open AI less open</h3>
+      <p>Hugging Face executive Irene Solaiman warned that growing cyberattacks on open AI platforms could force tighter security restrictions, threatening the accessibility that makes open source communities valuable. The October attack on OpenCode targeted users' third-party API keys and caused financial damage, and this summer an OpenAI agent swarm breached Hugging Face itself in an apparent attempt to cover its tracks after accessing answers to cybersecurity evaluations. On Monday, AI infrastructure startup Fireworks disclosed that attackers had accessed some customers' model weights, datasets, and billing information, and it temporarily disabled certain self-service dataset functions while it investigates.</p>
+      <div class="action"><strong>Action:</strong> If your team uses open models or AI platforms, rotate API keys regularly, scope tokens to the minimum they need, and watch for unusual usage or spend. The platforms are tightening up; your key hygiene should get there first.</div>
+    </div>
+
+    <div class="card">
+      <h3>France blames Iran for the freezer hacks, attribution unconfirmed</h3>
+      <p>France's foreign minister blamed Iran for launching at least two waves of cyberattacks targeting industrial refrigerated and freezer units in grocery stores and blood banks across France and wider Europe. The US government has not attributed the attacks, and security researchers have broadly attributed them to Iran, but no government has published evidence tying the campaign to a specific actor. Treat the blame as a claim, not a finding, until evidence lands.</p>
+      <div class="action"><strong>Action:</strong> None beyond the freezer actions in the Patch now section above. Attribution changes the politics, not the patching.</div>
+    </div>
+
+    <div class="card">
+      <h3>The tracked set stays dry</h3>
+      <p>No new item has met the tracked-alert bar since September 29: no qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages in the tracked set. This edition was built from TechCrunch Security, because that is where the week's real news landed. A quiet pipeline is not a quiet world.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence and use the calm in the pipeline to clear backlog, including the operational-device inventory above. When volume returns, future editions will get meatier.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Hugging Face policy podcast episode</h3>
+      <p>A podcast episode about the costs, risks, and trade-offs of building on open source AI. Interesting discussion, no admin action item. The Hugging Face security warning above is the version of this story that matters.</p>
+    </div>
+
+    <div class="card">
+      <h3>Palo Alto Networks acquisition talks</h3>
+      <p>Palo Alto Networks is reportedly in talks to buy AI agent security startup Clutch for $500 million. M and A news, not security news. Skip it.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>November Patch Tuesday lands today, November 10.</strong> Check Microsoft's releases when they post and work the new patches into this week's cycle.</li>
+        <li><strong>N-able remediation.</strong> Watch for a fix for the Able2Shell flaws, when hosted N-Central returns, and what self-hosted customers must do before bringing servers back online.</li>
+        <li><strong>Freezer hack fallout.</strong> Watch for a Danfoss response, spread to more countries, and any evidence behind the Iran attribution.</li>
+        <li><strong>DreamHost scope.</strong> Still waiting on a precise affected-customer count and whether more customers get notified.</li>
+        <li><strong>Wyndham notification question.</strong> Still unanswered whether Wyndham will notify affected customers or file with regulators.</li>
+      </ul>
+    </div>
+
+    <div class="signup pack-promo" id="freekit">
+  <h2>Start with the free Triage Kit</h2>
+  <p>The Patch Tuesday Triage Kit is free: the one-page triage order with checkboxes, plus Get-WindowsUpdateHealth.ps1, a read-only script that flags pending reboots, stale hotfixes, and low disk space before they break your patch cycle.</p>
+  <a class="button" href="https://payhip.com/buy?s=1&cart_links%5B%5D=1vIyB&qty%5B1vIyB%5D=1">Get the free Triage Kit</a>
+  <p class="fine">Free download from Payhip, no card needed. Includes the checklist PDF, the script, and a quick-start README.</p>
+</div>
+
+    <div class="signup pack-promo" id="pack">
+  <h2>Automate the routine work</h2>
+  <p>Stop doing AD user management by hand. The Windows IT Admin Automation Pack gives you five PowerShell scripts for bulk onboarding, safe offboarding, stale account cleanup, group audits, and a Microsoft 365 license audit, plus a quick-start guide and sample CSVs. Built by a working IT desktop support engineer.</p>
+  <a class="button" href="https://payhip.com/b/pXhFW">Get the pack, $39 one time</a>
+  <p>Also new: the <a href="https://payhip.com/b/YFrg1">Windows Patch &amp; Endpoint Health Toolkit</a>, five read-only scripts for patch health, Windows 11 readiness, stale computer accounts, local admin audits, and failed-update reports. $49 one time. And for the cloud side: the <a href="https://payhip.com/b/jFcYM">Microsoft 365 &amp; Entra Admin Pack</a>, five read-only Graph reports (inactive users, MFA gaps, license waste, guests, shared mailboxes), $49.</p>
+  <p class="fine">One-time purchase, free v1.x updates, single-seat commercial license. Delivered instantly by Payhip.</p>
+</div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #8, week of November 4 - November 10, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-008.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
+</body>
+</html>
