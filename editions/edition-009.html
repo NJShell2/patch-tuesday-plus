@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #9: Week of November 11 - November 17, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #9: Microsoft ships a 1,095-fix Patch Tuesday with an actively exploited Outlook zero-day, Nightmare Eclipse drops a new Windows zero-day the same day, and a critical Synology NAS flaw lets attackers in without logging in. November 11 - November 17, 2026.">
+<meta property="og:title" content="Edition #9: Week of November 11 - November 17, 2026 - Patch Tuesday Plus">
+<meta property="og:description" content="Patch Tuesday Plus Edition #9: Microsoft ships a 1,095-fix Patch Tuesday with an actively exploited Outlook zero-day, Nightmare Eclipse drops a new Windows zero-day the same day, and a critical Synology NAS flaw lets attackers in without logging in. November 11 - November 17, 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://njshell2.github.io/patch-tuesday-plus/editions/edition-009.html">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #9: Week of November 11 - November 17, 2026</h1>
+    <p class="meta">Published Tuesday, November 24, 2026. Curated from TechCrunch Security and Security Now 1105; 0 new tracked alerts in the alert pipeline.</p>
+<section class="edition-podcast" id="listen">
+  <h2 class="podcast-heading">Listen to this edition</h2>
+  <p class="podcast-meta">Marcus reads Edition #9 &middot; 10:01</p>
+  <audio controls preload="metadata" src="../audio/edition-009.mp3"></audio>
+  <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+</section>
+
+    <p class="lede">This week Microsoft shipped a 1,095-fix Patch Tuesday with an actively exploited Outlook zero-day, a researcher dropped a brand new Windows zero-day on the very same day, and a critical Synology NAS flaw let attackers in without logging in at all. The FBI warned that AI hacking tools can breach a network in under three hours, Infoblox confirmed a breach through one of its vendors, and Uber said close to 150,000 drivers had license data stolen. And the two biggest outages of the week, Microsoft 365 and the FAA ground stop, were not cyberattacks at all. The tracked alert pipeline is still dry since September 29, but the curated sources carried another full week.</p>
+
+    <img src="../assets/edition-009/hero.png" alt="Dark illustration of a server room at night, one rack glowing amber with a patch update in progress while a red warning light glows beside it" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. November Patch Tuesday: 1,095 fixes, an actively exploited Outlook zero-day, and a 10.0 Entra flaw</h3>
+      <img src="../assets/edition-009/patch-1.png" alt="A dark office desk at night with an email inbox glowing on screen, one message marked with a red warning while a patch progress bar fills beside it" class="card-img">
+      <p>Microsoft fixed 1,095 vulnerabilities in the November Patch Tuesday release, covering Windows, Microsoft Office, SQL Server, and developer tools. The one zero-day is CVE-2026-124194, a Microsoft Outlook spoofing vulnerability that is being actively exploited. It is rated Moderate with a CVSS of 6.5, and the advice from Security Now is to patch it first. No vulnerabilities were publicly disclosed before the patches shipped.</p>
+      <p>About 64 of the fixes, roughly 6 percent, were rated critical. The biggest number in the release is a CVSS 10.0 elevation of privilege flaw in Entra Device Registration, where an authorization bypass through a user-controlled key lets an unauthorized attacker elevate privileges over a network. There is also an Active Directory Domain Services remote code execution flaw at 8.8, an Exchange Server remote code execution flaw at 8.8, a Windows NAT remote code execution flaw at 8.1, and a Windows Schannel remote code execution flaw at 8.1. Sorted by type, the release holds 297 remote code execution flaws and 536 elevation of privilege flaws. Chain one of each and you have more code as root.</p>
+      <p>Who is affected: every Windows shop, and especially anyone running Exchange, Active Directory, or Entra. Outlook users are directly in the line of the one actively exploited bug.</p>
+      <div class="action"><strong>Action:</strong> Patch CVE-2026-124194 first, then the Entra Device Registration 10.0, then Active Directory and Exchange. Work the rest of the 1,095 fixes into this week's cycle; the volume is high because AI-assisted vulnerability screening is finding flaws faster, and that pace is not slowing down.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>2. SignDrop: Nightmare Eclipse drops a new Windows zero-day on Patch Tuesday</h3>
+      <img src="../assets/edition-009/patch-2.png" alt="A laptop on a dark desk at night with a log file open on screen, a shield icon cracking above it and a red glow spreading from the keyboard" class="card-img">
+      <p>Nightmare Eclipse, the researcher who deliberately drops zero-days on Patch Tuesdays, did it again. The new flaw, dubbed SignDrop, gives local users full System rights on some versions of Windows. It lives in the Common Log File System, or CLFS, and works by forcing a privileged process such as Windows Defender to open a crafted CLFS container. By manipulating Windows Object Manager symbolic links, an attacker with ordinary user rights can get Defender to create a file using its System privileges, then abuse that file creation to elevate to System. The researcher says the same trick can turn off any antivirus or endpoint protection, because from the kernel's point of view the file creation request comes from the product's own legitimate process.</p>
+      <p>Researcher Will Dormann reproduced the exploit and confirmed it works as described, but not on all versions of Windows 11. It appears to require Windows 11 26H2 that has existed for more than 90 days, with the CLFS authentication mode set to 0 or 1. You can check by running winver and looking at the registry value under HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CLFS\Authentication\Mode. Microsoft said it is investigating the writeup, has no evidence the vulnerability is being exploited in the wild, and says Defender blocks potential exploitation attempts. That last claim is unconfirmed.</p>
+      <p>Who is affected: organizations running Windows 11 26H2, especially machines that have been on 26H2 for more than 90 days. Ironically, the flaw stems from a security measure Microsoft introduced in October 2025 to prevent attackers from exploiting other CLFS vulnerabilities.</p>
+      <div class="action"><strong>Action:</strong> Check your 26H2 fleet for the CLFS authentication mode value and identify the machines that meet the vulnerable conditions. Watch for a Microsoft patch or CVE assignment for SignDrop and prioritize it when it lands. Do not assume Defender alone covers this; the exploit is designed to work through Defender itself.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>3. Synology patches a critical NAS flaw that lets attackers in without logging in</h3>
+      <img src="../assets/edition-009/patch-3.png" alt="A network storage device in a dark room at night, its drive bays glowing blue while a red warning light glows on the front panel" class="card-img">
+      <p>Synology disclosed two serious vulnerabilities in DiskStation Manager, the Linux-based operating system used in its NAS products. The first, CVE-2026-76954, is a SQL injection bug in the DSM Auth API rated critical with a CVSS of 9.8. It lets remote attackers read or write arbitrary files, or carry out denial of service attacks. The second, CVE-2026-85101, is a flaw in the DSM rsync tool rated important at 8.6 that lets attackers bypass authentication entirely to read specific files, write arbitrary files, or launch limited denial of service attacks. Both can be exploited remotely, without logging in.</p>
+      <p>Synology shipped the fixed DSM versions in October 2026 and disclosed the flaws roughly a month later, a common practice that gives users time to patch before the details go public. Fixes are available for DSM 7.4, 7.3, 7.2.2, and 7.2.1. Users with automatic updates may already have the patch, but anyone on a manual update policy should check for new DSM releases now.</p>
+      <p>Who is affected: any organization running a Synology NAS, and especially any NAS reachable from the internet. This is the second week in a row a remote authentication service turned out to be bypassable from outside, and the lesson is the same: remote authentication should never be exposed to the public internet in the first place.</p>
+      <div class="action"><strong>Action:</strong> Confirm every Synology NAS is on a fixed DSM release, 7.4, 7.3, 7.2.2, or 7.2.1 with the October patch. If any NAS is reachable from the internet, take it off the public internet now, whether or not it is patched. Audit your own internet-facing services for anything that was never meant to be public.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>FBI: AI hacking tool Artex breached networks in under three hours</h3>
+      <p>The FBI warned that hackers are using autonomous AI hacking tools to launch cyberattacks across the US and globally, in a flash advisory covering financial services, government, tech, defense, phone and internet companies, and law firms. The open source tool Artex, an AI penetration testing platform, can move from targeting a system to active compromise in under three hours. It scans a victim's network for weaknesses, then exploits simple security bugs such as weak protections and exposed or stolen passwords to gain a foothold, then spreads across the network for databases, mailboxes, and other sensitive information.</p>
+      <p>The FBI confirmed earlier findings from Microsoft that hackers used Artex to break into IT management giant ConnectWise and gain access to the Microsoft 365 cloud environments of at least 2,250 of its customers, though ConnectWise told TechCrunch it does not have the visibility to confirm that number, so treat the count as unconfirmed. Artex was also used against South Korean financial institutions, where weak defenses and missing multi-factor authentication let attackers steal the personal data of at least 68,000 people. Security company Barracuda disclosed it was breached in an Artex-linked attack in which the tool found an exposed credential belonging to a third-party service Barracuda had not revoked; Barracuda could not rule out access from its logs, assumed the worst, and changed all of its customer credentials. Artex has since gone closed-source, but the FBI says the previous open source version continues to circulate and remains widely accessible.</p>
+      <div class="action"><strong>Action:</strong> Assume attackers can move faster than your response time and harden the basics they exploit: multi-factor authentication everywhere, no exposed or stale credentials, and no penetration testing tools reachable from the internet. Review third-party service credentials and revoke any that belong to ended vendor relationships. The tools are noisy, so make sure your alerts actually fire on that noise.</div>
+    </div>
+
+    <div class="card">
+      <h3>Infoblox confirms a breach through a third-party vendor</h3>
+      <p>Cybersecurity and automation giant Infoblox confirmed a security incident in which hackers accessed company information through one of its technology vendors. The vendor provides SharePoint data migration services, according to a notification Infoblox sent about the breach and two people with knowledge of the incident. One of those people said sensitive customer data was taken, which Infoblox has not confirmed, so treat that as unconfirmed. Infoblox has not named the vendor, but one person with knowledge said Infoblox has terminated its work with the vendor.</p>
+      <p>Infoblox said it has no indication that any of its products, cloud services, software updates, or build-and-release processes were involved. The company would not say how many customers were affected, or whether it had been contacted by the hackers or received any demands. It is working with outside investigators to understand the scope.</p>
+      <div class="action"><strong>Action:</strong> If you use Infoblox, watch for official communications and review security logs related to interactions with Infoblox systems for suspicious activity. More broadly, this is a vendor-breach pattern: your data can be exposed through a supplier you never vetted. Check which of your vendors hold your data and whether their access is still necessary.</div>
+    </div>
+
+    <div class="card">
+      <h3>Uber: close to 150,000 drivers had license data stolen in the Fireworks AI breach</h3>
+      <p>Uber is notifying close to 150,000 drivers that their personal and driver's license information was stolen during an October data breach at one of its tech providers. In notices filed with several US attorneys general, Uber said it was notified on October 9 that hackers broke in and stole internal credentials, which were used to access Uber's data. The stolen data includes drivers' names, addresses, dates of birth, and driver's license numbers. In a notice filed with Oregon's attorney general, Uber said it notified 149,346 people in total.</p>
+      <p>The provider is Fireworks AI, which lets developers access and use open-weight AI models. Fireworks reported a breach last month in which hackers stole customer information including billing data and some private AI datasets. Online productivity startup Notion and AI coding startup Cursor have both confirmed they had data stolen in the Fireworks hack. Uber said it had alerts enabled to detect unauthorized access to its Fireworks environment, but because the hackers used Fireworks' own internal credentials, no alerts were triggered. Fireworks attributed its breach to a financially motivated cybercriminal group whose goal is to sell stolen tokens for accessing large language models. No group has taken credit for the data theft. This is Uber's second known data breach this year.</p>
+      <div class="action"><strong>Action:</strong> If your organization uses Fireworks AI, review their security posture and any vendor communications, and rotate credentials and tokens tied to the service. If any of your staff drive for Uber, point them at Uber's guidance and remind them to watch for identity theft using their license data. The lesson for your own monitoring: alerts that trust the vendor's own credentials will not fire when those credentials are the attack.</div>
+    </div>
+
+    <div class="card">
+      <h3>The week's big outages were not attacks</h3>
+      <p>Two major outages dominated the week, and neither was a cyberattack, as far as anyone in a position to know can tell. On Thursday, Microsoft suffered a 14-hour outage across many of its Microsoft 365 services, most notably Outlook, starting around 12:30 p.m. ET. Exchange Online was at the root of the problem, and the outage hit Outlook, Teams, SharePoint Online, Copilot, and Defender XDR. Microsoft's own updates during the outage were confused and contradictory, and broad recovery was not reported until about 2:11 a.m. Eastern on Friday. Microsoft has promised a full after-action report.</p>
+      <p>On Friday, the FAA ordered a nationwide ground stop for domestic flights. The cause was the nation's radar tracking network, more than 4,000 ground-based installations still linked by pre-internet analog copper leased lines with 19.2K baud modems. A single misbehaving router in southern Arkansas appears to have flooded that fragile network with replies it could not handle, effectively DDoSing itself. CBS later reported that an update pushed to the network run by L3Harris triggered a reboot and then a crash. Google, meanwhile, took to X to announce that Gmail was working just fine, after outage reports circulated on the same platform. The Director of National Intelligence said the US is not facing coordinated cyberattacks and attributed the wave of disruptions to businesses patching their systems at a much larger scale than before, with some systems not coming back as expected.</p>
+      <div class="action"><strong>Action:</strong> None beyond your normal outage playbook, but note the pattern: patching at scale is itself causing outages, so test restores and rollbacks as part of your patch cycle, and keep a second channel for status when your primary cloud goes dark.</div>
+    </div>
+
+    <div class="card">
+      <h3>Proton's Lumo AI assistant arrives on desktop</h3>
+      <p>Proton launched Lumo Desktop for Windows, macOS, and Linux, bringing its privacy-focused AI assistant to personal computers. The app lets the AI carry out local tasks involving connected apps, personal files, and automations, with connectors for file-system access, shell execution, browser content fetching, and third-party services including Confluence, Dropbox, and Jira, plus local and remote MCP servers. Proton says users can decide for each connector which actions Lumo can perform automatically, which require approval, and which are blocked entirely, and that conversations and information from connected apps and files are never used to serve personalized ads or train AI models.</p>
+      <p>The launch lands the same week Apple announced tightened security settings for apps that request Full Disk Access, which AI desktop apps do. An AI agent with file and shell access is a powerful tool and a new attack surface in one package.</p>
+      <div class="action"><strong>Action:</strong> Before anyone on your team installs an AI desktop agent, decide your policy: which connectors are allowed, which actions need approval, and which are blocked. Lumo's per-connector controls are the model to demand from any AI agent tool, not the exception.</div>
+    </div>
+
+    <div class="card">
+      <h3>The tracked set stays dry</h3>
+      <p>No new item has met the tracked-alert bar since September 29: no qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages in the tracked set. This edition was built from TechCrunch Security and Security Now 1105, because that is where the week's real news landed. A quiet pipeline is not a quiet world.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence and use the calm in the pipeline to clear backlog. When volume returns, future editions will get meatier.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Google announces it is not having an outage</h3>
+      <p>Google posted on X that Gmail was running fine, heading off outage reports circulating the same day. No outage, no action. The outage story that matters is in the Watch section above.</p>
+    </div>
+
+    <div class="card">
+      <h3>GRC code signing certificate saga</h3>
+      <p>Security Now host Steve Gibson spent part of the week untangling a mis-issued IdenTrust code signing certificate that was about to be revoked. A personal certificate adventure, no admin action item.</p>
+    </div>
+
+    <div class="card">
+      <h3>Formal code verification</h3>
+      <p>Security Now 1105's main segment was on formal code verification and how AI may finally make it practical. Interesting for the long term, nothing to patch today.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>Microsoft 365 outage after-action report.</strong> Microsoft promised a full report on the 14-hour outage. Watch for what actually broke and whether it was a health monitoring system taking servers offline.</li>
+        <li><strong>SignDrop patch watch.</strong> Watch for a Microsoft patch or CVE assignment for the SignDrop CLFS flaw, and check your 26H2 fleet's CLFS authentication mode in the meantime.</li>
+        <li><strong>Infoblox scope.</strong> Still waiting on a precise affected-customer count, whether sensitive customer data was taken, and whether more customers get notified.</li>
+        <li><strong>Uber and Fireworks fallout.</strong> Watch whether the affected driver count rises and what Fireworks' investigation finds about the stolen internal credentials.</li>
+        <li><strong>Synology confirmation.</strong> Confirm your DSM updates are applied, and check whether any other NAS vendor reports similar authentication flaws.</li>
+        <li><strong>Entra 10.0 exploitation watch.</strong> The CVSS 10.0 Entra Device Registration flaw is the kind of bug attackers study first. Watch for exploitation reports.</li>
+      </ul>
+    </div>
+
+    <div class="signup pack-promo" id="freekit">
+  <h2>Start with the free Triage Kit</h2>
+  <p>The Patch Tuesday Triage Kit is free: the one-page triage order with checkboxes, plus Get-WindowsUpdateHealth.ps1, a read-only script that flags pending reboots, stale hotfixes, and low disk space before they break your patch cycle.</p>
+  <a class="button" href="https://payhip.com/buy?s=1&cart_links%5B%5D=1vIyB&qty%5B1vIyB%5D=1">Get the free Triage Kit</a>
+  <p class="fine">Free download from Payhip, no card needed. Includes the checklist PDF, the script, and a quick-start README.</p>
+</div>
+
+    <div class="signup pack-promo" id="pack">
+  <h2>Automate the routine work</h2>
+  <p>Stop doing AD user management by hand. The Windows IT Admin Automation Pack gives you five PowerShell scripts for bulk onboarding, safe offboarding, stale account cleanup, group audits, and a Microsoft 365 license audit, plus a quick-start guide and sample CSVs. Built by a working IT desktop support engineer.</p>
+  <a class="button" href="https://payhip.com/b/pXhFW">Get the pack, $39 one time</a>
+  <p>Also new: the <a href="https://payhip.com/b/YFrg1">Windows Patch &amp; Endpoint Health Toolkit</a>, five read-only scripts for patch health, Windows 11 readiness, stale computer accounts, local admin audits, and failed-update reports. $49 one time. And for the cloud side: the <a href="https://payhip.com/b/jFcYM">Microsoft 365 &amp; Entra Admin Pack</a>, five read-only Graph reports (inactive users, MFA gaps, license waste, guests, shared mailboxes), $49.</p>
+  <p class="fine">One-time purchase, free v1.x updates, single-seat commercial license. Delivered instantly by Payhip.</p>
+</div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #9, week of November 11 - November 17, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-009.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
+</body>
+</html>
