@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edition #10: Week of November 18 - November 24, 2026 - Patch Tuesday Plus</title>
+<meta name="description" content="Patch Tuesday Plus Edition #10: a transcription firm left police interviews and bodycam footage on a server with no password, banks told AI agent users they are on their own if hacked, and the FBI is reportedly investigating a hack of its national crime database. November 18 - November 24, 2026.">
+<meta property="og:title" content="Edition #10: Week of November 18 - November 24, 2026 - Patch Tuesday Plus">
+<meta property="og:description" content="Patch Tuesday Plus Edition #10: a transcription firm left police interviews and bodycam footage on a server with no password, banks told AI agent users they are on their own if hacked, and the FBI is reportedly investigating a hack of its national crime database. November 18 - November 24, 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://njshell2.github.io/patch-tuesday-plus/editions/edition-010.html">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="../index.html">Patch Tuesday <span class="plus">Plus</span></a></p>
+    <p class="tagline">The week's security news that matters to people who run the network. Plain-spoken, no hype.</p>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#signup">Daily email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h1>Edition #10: Week of November 18 - November 24, 2026</h1>
+    <p class="meta">Published Tuesday, November 24, 2026. Curated from TechCrunch Security; no new Security Now episode aired this week; 0 new tracked alerts in the alert pipeline.</p>
+<section class="edition-podcast" id="listen">
+  <h2 class="podcast-heading">Listen to this edition</h2>
+  <p class="podcast-meta">Marcus reads Edition #10 &middot; 9:46</p>
+  <audio controls preload="metadata" src="../audio/edition-010.mp3"></audio>
+  <div><button class="share-btn" type="button" data-share>Copy link to this episode</button></div>
+</section>
+
+    <p class="lede">This week a transcription firm left police interviews and bodycam footage sitting on a server with no password, the banks told AI agent users they are on their own if they get hacked, and the FBI is reportedly investigating a hack of its national crime database. The UK government was ordered to admit its secret Apple backdoor order, Signal moved to block screenshots against AI surveillance, and the experts explained the outage wave as AI surfacing flaws faster than anyone can patch them. No Security Now episode aired this week, and the tracked alert pipeline is still dry since September 29, but the curated sources carried another full week.</p>
+
+    <img src="../assets/edition-010/hero.png" alt="Dark illustration of an open cloud storage bucket at night, files and documents spilling out of it while a red warning light glows beside it" class="hero-img">
+
+    <ul class="toc">
+      <li><a href="#patch-now">Patch now: the top 3</a></li>
+      <li><a href="#watch">Watch: the rest of the week's news</a></li>
+      <li><a href="#ignore">Ignore: noise, skip it</a></li>
+      <li><a href="#on-deck">On deck for next week</a></li>
+    </ul>
+
+    <h2 id="patch-now">Patch now: the top 3</h2>
+
+    <div class="card">
+      <span class="badge critical">Critical</span>
+      <h3>1. Transcription firm left police interviews and bodycam footage on a server with no password</h3>
+      <img src="../assets/edition-010/patch-1.png" alt="A dark office desk at night with police interview transcripts and video files scattered across a glowing screen, a padlock lying open beside them" class="card-img">
+      <p>San Francisco-based transcription company Tigerfish, which serves law enforcement, government departments, and Silicon Valley tech giants, left a large amount of internal data exposed to the web. The exposed files included transcriptions of police interviews, bodycam footage, customers' raw audio and video footage, and invoices of customers including police departments and prosecutors' offices. The files sat on an Amazon-hosted S3 cloud server that was openly listed and accessible to anyone via an easy-to-guess web address, with no password needed.</p>
+      <p>Security researcher Anurag Sen found the exposed data in October and alerted the company, but did not hear back; the company later said his email was caught in its spam filter. After TechCrunch verified the leak and contacted Tigerfish, the company secured the bucket. Tigerfish president Adam Goldberg said the company blocked all public access to the bucket, including directory listings and individual files, and verified that all of its other S3 buckets are blocked to public access. It is unclear whether the company has notified its customers; Tigerfish did not respond to a follow-up email.</p>
+      <p>Who is affected: any organization that sends sensitive material to a third-party transcription service, and especially police, prosecutors, and legal teams whose interview recordings and case files were in this bucket. The deeper lesson is for every admin: the exposure was not a sophisticated hack, it was a misconfigured bucket, the kind of basic human error that AI-assisted scanning is now finding at scale.</p>
+      <div class="action"><strong>Action:</strong> Audit every cloud storage bucket your organization owns for public access, starting with any holding sensitive or regulated data. Review your transcription and other data-handling vendors: ask what they store, where, and how it is protected, and confirm they would actually receive and act on a researcher disclosure. If you use Tigerfish, ask them directly whether your data was exposed and whether you were notified.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>2. Banks to AI agent users: if you get hacked, that is on you</h3>
+      <img src="../assets/edition-010/patch-2.png" alt="A dark bank building at night with a robotic hand reaching toward a glowing key, a red warning glow on the steps" class="card-img">
+      <p>Citibank, the third largest commercial bank in the United States, changed its terms of service this week, telling customers who use third-party AI tools for personal finance that anything that goes wrong is their problem, even if they get hacked. AI agents can be given the credentials to a bank account and other financial portals, with the idea that they can analyze spending, offer advice, and even handle transactions and bill payments. Citi's update goes beyond telling customers they are responsible for anything their agents do; it also says that if the AI tool leaks their credentials or is hacked, the customer will be responsible for anything hackers do with their account.</p>
+      <p>JPMorgan and Bank of America, the two largest banks in the country, announced similar policies last month. PNC, the eighth largest bank, changed its terms the same day as Citi, and Citizens emailed its customers this week with a similar warning. Anthropic's approach is telling: the personal finance tool it launched earlier this month is explicitly billed as read-only and cannot move, manage, or invest your money. Citi's terms note that AI agents it provides can be used without worrying about additional liability, so the banks are drawing a line between their own tools and everyone else's.</p>
+      <p>Who is affected: anyone on your staff who hands banking credentials to a third-party AI agent, and any organization whose acceptable use policy has not caught up. The agents need your credentials to work, which means a leak or a hack of the agent becomes a leak or a hack of the account, with no bank safety net.</p>
+      <div class="action"><strong>Action:</strong> Update your acceptable use policy to cover personal finance AI agents explicitly: whether staff may connect them to bank or brokerage accounts on work devices or networks, and what happens if they do. Warn staff that the banks will not reverse losses from an agent's actions or a hacked agent. If your organization evaluates AI agents, require read-only access where possible and never let an agent hold live banking credentials.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge high">High</span>
+      <h3>3. FBI reportedly investigating a hack of its national crime database</h3>
+      <img src="../assets/edition-010/patch-3.png" alt="A dark federal database server room at night, rows of servers glowing blue while a single red warning light blinks on one rack" class="card-img">
+      <p>The FBI is investigating an apparent hack of the National Crime Information Center, the online database used by federal and local law enforcement to share information about warrants, background checks, and more, according to reports in CNN and the Associated Press. The scope of the breach does not yet appear to be clear. This item is unconfirmed: the FBI has not publicly confirmed the hack, and the reporting rests on the two outlets' sources. Treat everything about it as reported, not established, until the FBI says more.</p>
+      <p>A former FBI official told CNN the concern is not just whether hackers gained access to sensitive information, though that is an issue, but whether they could compromise the accuracy of the information that officers rely on. President Donald Trump addressed the reports in a Saturday interview with Fox News, saying it is not good. In September, the FBI reportedly told agents and support staff that their personal information had been stolen in a cyberattack, a separate incident.</p>
+      <p>Who is affected: law enforcement agencies that rely on NCIC data, and anyone whose information sits in the database. For most IT admins the direct impact is limited, but the data integrity angle is the one to watch: a database officers trust for warrants and background checks is only useful if its contents are accurate.</p>
+      <div class="action"><strong>Action:</strong> No patch and no immediate action beyond vigilance. If your organization integrates with or relies on FBI data systems, watch for official announcements and be ready to verify any NCIC-sourced information through a second channel until the scope is clear. Do not treat the reported hack as confirmed in your own communications.</div>
+    </div>
+
+    <h2 id="watch">Watch: the rest of the week's news</h2>
+
+    <div class="card">
+      <h3>UK government ordered to admit its secret Apple backdoor order</h3>
+      <p>The UK government has been ordered to confirm that it issued a secret order demanding Apple provide authorities with encrypted customer information. The ruling from the UK's Investigatory Powers Tribunal, an independent court that lets citizens challenge government surveillance orders, is a rare rebuke: the tribunal rejected the Home Office's claim that disclosing the order would be damaging to national security. Rights group Liberty International, which brought the challenge on behalf of two individuals, said this is the first known time the government has been compelled to confirm the existence of a secret technical order.</p>
+      <p>The ruling comes a year after the UK government reportedly demanded that Apple build a backdoor to allow UK authorities access to customer data anywhere in the world. Details of the so-called technical capabilities notice leaked to the media, drawing criticism from White House officials and US lawmakers who argued the order would put Americans' privacy at risk. Apple refused the order and blocked UK users from switching on its Advanced Data Protection encryption feature for iCloud, rather than comply. The order was later narrowed to allow access to British nationals' data stored in Apple's encrypted cloud, and Apple challenged that second order too. Apple has said it has never built a backdoor or master key to any of its products or services and never will. A final hearing on what specific order details can be released is expected next year.</p>
+      <div class="action"><strong>Action:</strong> None to take today, but know where your cloud data sits: if your organization relies on Apple's Advanced Data Protection, understand that UK users cannot switch it on, and that governments are still testing whether they can compel access to encrypted cloud data. Watch the final hearing next year for what gets disclosed.</div>
+    </div>
+
+    <div class="card">
+      <h3>Signal blocks mobile screenshots against AI surveillance</h3>
+      <p>Signal announced it is limiting users' ability to take screenshots within the secure messaging app, a response to what president Meredith Whittaker described as the existential threat of operating systems that integrate agentic AI. By giving AI agents the ability to scan the information on users' screens, Windows, Android, and macOS and iOS are undermining Signal's ability to independently guarantee privacy, she wrote. Sensitive data is being captured, stored, and made accessible to whatever local database or remote server an OS-level AI agent is using, all outside of Signal's control once the data has been captured, and it imperils the privacy of all participants in a conversation.</p>
+      <p>Signal already blocked screenshots of its Windows app by default. Now it is adding similar restrictions in Android and iOS. Users can disable the setting if they wish, which Whittaker said would break Signal's privacy guarantees. She also admitted this is an incomplete solution, as it does not address other, sneakier ways AI agents could potentially access application data.</p>
+      <div class="action"><strong>Action:</strong> If your organization uses Signal for sensitive communications, make sure staff keep the screenshot restriction on and understand that OS-level AI agents can still capture screen content. Review your own devices' AI agent and screen-reading features: the privacy boundary now sits at the operating system, not the app.</div>
+    </div>
+
+    <div class="card">
+      <h3>The outage wave, explained: AI is surfacing flaws faster than anyone can patch them</h3>
+      <p>Airline booking systems, banking platforms, and productivity platforms all went down in the past two weeks, and the experts say there may be more than coincidence going on, even though there is no reason to view the outages as cyberattacks. Dave DeWalt, a cybersecurity veteran who ran McAfee and served as vice chairman of the CISA Advisory Council, told TechCrunch the outages are most likely the growing pains of a security system that is getting stronger, not weaker: AI is surfacing vulnerabilities at a speed and scale never seen before, through tools like Mythos and others, and enterprises are rushing to fix them before bad actors can exploit them. That surge in patching is disrupting things in the short term.</p>
+      <p>Anusha Iyer, a software engineer and founder of security startup Corsha, called it the first moment when legacy meets modern: industrial systems were never designed to be connected, let alone securely connected the way they are being pushed to be today. She pointed to the FAA outage, where modernizing the telecommunications infrastructure likely overwhelmed legacy hardware that could not keep up. The fault, she said, is the rushed mix of legacy and modern systems without a clear understanding of operational and cyber risk. Virginia Senator Mark Warner, vice chair of the Senate Intelligence Committee, wrote that the disruptions should serve as a wake-up call, and that it feels like every day brings another reminder that AI is moving faster than our ability to manage its consequences.</p>
+      <div class="action"><strong>Action:</strong> Build the lesson into your own patch cycle: test restores and rollbacks, phase modern systems in rather than bolting them onto legacy hardware, and segment industrial systems more tightly with stronger access controls. The outages are the cost of finding flaws fast; the alternative is letting attackers find them first.</div>
+    </div>
+
+    <div class="card">
+      <h3>Honey traps are now an AI industry problem</h3>
+      <p>Even as the fallout continues over Nvidia CEO Jensen Huang's alleged honey-trap scandal, experts warn that many more people in the AI industry are at risk. The most valuable secrets now sit inside companies building chips, models, and infrastructure, and a spy wants what the CEO can touch: the roadmap, the export decisions, the customer list, who gets the technology. The CEO is the shortest path to all of it, former senior CIA officer Aaron Brown told TechCrunch. Huang has been accused of falling for a honey trap involving Alice Huang, a former executive of a Singapore neocloud accused of being a Chinese spy and of smuggling billions of dollars' worth of restricted Nvidia chips into China. Those accusations are unconfirmed.</p>
+      <p>It is not just CEOs and founders at risk. The Wall Street Journal reported that OpenAI started warning its employees about outsiders trying to cozy up to them in search of company secrets. Anyone with access to sensitive information, from board members to executive assistants, can be the target. And typically the attackers are not lovers: friendship is the oldest honey-trap scheme around, and the approaches come as investors, customers, recruiters, and consultancies, with requests that look legitimate on paper. AI has made the schemes much easier and cheaper, generating fake social profiles, fake backgrounds, even fake voice calls to sustain an entire fictional backstory. Red flags include coincidental encounters that happen a little too often, persistent curiosity about work and colleagues, requests for secrecy, and requests that keep getting bigger.</p>
+      <div class="action"><strong>Action:</strong> Add social engineering to your security training with this specific shape: new contacts who are unusually curious about work, who push for introductions or information, or who ask for secrecy about meeting up. Build a culture where employees are comfortable questioning unusual requests and escalating possible threats, including when the request comes through the CEO. Eliminate executive exceptionalism: the rules apply to people in power too.</div>
+    </div>
+
+    <div class="card">
+      <h3>Palmer Luckey: AI-powered attacks are outpacing defenses, and it is time to start running</h3>
+      <p>AI-powered cyberattacks are moving faster than outdated technology systems can defend against them, Palmer Luckey warned at the New York Times DealBook Summit. Addressing the recent spate of tech outages, the Oculus founder and Anduril Industries co-founder argued that older systems are struggling to keep pace with the new hacking capabilities enabled by AI, and that it was time to quicken the pace of securing defenses. He said US adversaries are exploiting the mismatch between new attack capabilities and defense capabilities, for both strategic and financial reasons, and that North Korea was particularly involved.</p>
+      <p>Luckey argued that AI could ultimately give defenders the upper hand, but they would have to move more quickly. In the long run, he said, the advantages will accrue to the side most effectively using AI for defense. There is a mismatch, he said, between attackers who are very fast-moving and using technology, and old, outdated systems that are not able to adopt technology as quickly as it is developed. People are going to have to pick up the pace, he said. It is time to start running.</p>
+      <div class="action"><strong>Action:</strong> Treat the warning as a prioritization prompt, not a product pitch: inventory your oldest, hardest-to-patch systems first, because that is where the mismatch lives. Speed up your own defensive use of AI, including vulnerability triage and patch testing, rather than waiting for a vendor to do it for you.</div>
+    </div>
+
+    <div class="card">
+      <h3>US national cyber director is stepping down</h3>
+      <p>White House national cyber director Sean Cairncross will be stepping down, Axios reported. Cairncross, the president's principal adviser on national cybersecurity policy and strategy, took office in August 2025. He met with top AI leaders and helped the Trump administration make key AI decisions, according to Axios. The outlet reports that the split was amicable, and his departure was timed so the White House could get a Senate confirmation for his replacement before Democrats take control of Congress in January.</p>
+      <p>Cairncross, a lawyer and longtime Republican operative, had no cybersecurity background when the Senate confirmed him 59 to 35. Congress created the office in early 2021, and Cairncross was only its third Senate-confirmed director. The first director, Chris Inglis, left after about 19 months, and the job then went about 10 months without a permanent director.</p>
+      <div class="action"><strong>Action:</strong> None for your own network. Watch who is nominated next: the office has now had a long vacancy before, and a gap at the top of national cyber policy tends to slow the federal guidance your compliance work depends on.</div>
+    </div>
+
+    <div class="card">
+      <h3>The tracked set stays dry</h3>
+      <p>No new item has met the tracked-alert bar since September 29: no qualifying breaches, no actively exploited zero-days in enterprise software, no ransomware on critical targets, no major outages in the tracked set. This edition was built from TechCrunch Security, because that is where the week's real news landed. A quiet pipeline is not a quiet world.</p>
+      <div class="action"><strong>Action:</strong> Keep your normal patch cadence and use the calm in the pipeline to clear backlog. When volume returns, future editions will get meatier.</div>
+    </div>
+
+    <h2 id="ignore">Ignore: noise, skip it</h2>
+
+    <div class="card">
+      <h3>Dutch privacy authority warns against smart glasses</h3>
+      <p>The Netherlands' data protection agency urged consumers not to buy smart wearables, saying they violate people's privacy, get information wrong, and can result in unsafe situations. Consumer advice, no admin action item.</p>
+    </div>
+
+    <div class="card">
+      <h3>Palmer Luckey the prepper</h3>
+      <p>The Anduril founder said Americans should always have three days of food, water, and medicine, just in case. Personal preparedness philosophy, not a security alert. His warning about AI attacks is the version of this story that matters, and it is in the Watch section above.</p>
+    </div>
+
+    <div class="card">
+      <h3>British hackers face prison for the GTA 6 breach</h3>
+      <p>Two British hackers face lengthy prison sentences for hacks that broke into the Grand Theft Auto gamemaker and for stealing millions in crypto. Sentencing news about past crimes, nothing to patch.</p>
+    </div>
+
+    <h2 id="on-deck">On deck for next week</h2>
+
+    <div class="card">
+      <ul>
+        <li><strong>NCIC investigation.</strong> Watch for the FBI to confirm or deny the reported hack, and for the scope: whether data was accessed, and whether its accuracy was affected.</li>
+        <li><strong>Tigerfish notification.</strong> Still unclear whether Tigerfish has notified its customers, including police departments and prosecutors, that their data was exposed.</li>
+        <li><strong>More banks, more AI agent rules.</strong> Watch whether more banks follow Citi, JPMorgan, Bank of America, PNC, and Citizens, and whether regulators respond.</li>
+        <li><strong>UK Apple backdoor hearing.</strong> The final hearing on what order details can be released is expected next year; watch for what gets disclosed.</li>
+        <li><strong>Signal restrictions rollout.</strong> Watch whether other messengers follow Signal in blocking screenshots against OS-level AI agents.</li>
+        <li><strong>Outage investigations.</strong> The FAA modernization findings and Microsoft's promised after-action report on the 14-hour Microsoft 365 outage are still pending.</li>
+      </ul>
+    </div>
+
+    <div class="signup pack-promo" id="freekit">
+  <h2>Start with the free Triage Kit</h2>
+  <p>The Patch Tuesday Triage Kit is free: the one-page triage order with checkboxes, plus Get-WindowsUpdateHealth.ps1, a read-only script that flags pending reboots, stale hotfixes, and low disk space before they break your patch cycle.</p>
+  <a class="button" href="https://payhip.com/buy?s=1&cart_links%5B%5D=1vIyB&qty%5B1vIyB%5D=1">Get the free Triage Kit</a>
+  <p class="fine">Free download from Payhip, no card needed. Includes the checklist PDF, the script, and a quick-start README.</p>
+</div>
+
+    <div class="signup pack-promo" id="pack">
+  <h2>Automate the routine work</h2>
+  <p>Stop doing AD user management by hand. The Windows IT Admin Automation Pack gives you five PowerShell scripts for bulk onboarding, safe offboarding, stale account cleanup, group audits, and a Microsoft 365 license audit, plus a quick-start guide and sample CSVs. Built by a working IT desktop support engineer.</p>
+  <a class="button" href="https://payhip.com/b/pXhFW">Get the pack, $39 one time</a>
+  <p>Also new: the <a href="https://payhip.com/b/YFrg1">Windows Patch &amp; Endpoint Health Toolkit</a>, five read-only scripts for patch health, Windows 11 readiness, stale computer accounts, local admin audits, and failed-update reports. $49 one time. And for the cloud side: the <a href="https://payhip.com/b/jFcYM">Microsoft 365 &amp; Entra Admin Pack</a>, five read-only Graph reports (inactive users, MFA gaps, license waste, guests, shared mailboxes), $49.</p>
+  <p class="fine">One-time purchase, free v1.x updates, single-seat commercial license. Delivered instantly by Payhip.</p>
+</div>
+
+    <p><a href="../index.html">&larr; Back to home</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Patch Tuesday Plus &middot; Edition #10, week of November 18 - November 24, 2026. Curated for IT admins and security-minded pros. Plain-spoken, no hype.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector("[data-share]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var link = "https://njshell2.github.io/patch-tuesday-plus/editions/edition-010.html#listen";
+      function done(ok) {
+        btn.textContent = ok ? "Copied!" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy link to this episode"; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand("copy")); } catch (e) { done(false); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  function revealFromHash() {
+    if (location.hash !== "#listen") return;
+    var target = document.getElementById("listen");
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.classList.remove("flash");
+    void target.offsetWidth;
+    target.classList.add("flash");
+    setTimeout(function () { target.classList.remove("flash"); }, 2500);
+  }
+  window.addEventListener("hashchange", revealFromHash);
+  revealFromHash();
+})();
+</script>
+</body>
+</html>
